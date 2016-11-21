@@ -24,6 +24,17 @@ public class TrackController {
     private TrackService trackService;
 
 
+    @ApiOperation(value = "Finds All persons in db", nickname = "Find All", produces = "application/json")
+    @RequestMapping(value = "/findall", method = RequestMethod.GET)
+    public @ResponseBody List<Person> viewAll() {
+
+        log.info("finds all persons in db...");
+        List<Person> allPersons = trackService.findAll();
+
+
+        return allPersons;
+    }
+
     @ApiOperation(value = "Add", nickname = "Add", produces = "application/json")
     @RequestMapping(value = "/add/{name}", method = RequestMethod.POST)
     public @ResponseBody String addUser(@PathVariable("name") String name) {
@@ -54,17 +65,6 @@ public class TrackController {
         trackService.deleteAll();
 
         return "Deleted All...";
-    }
-
-    @ApiOperation(value = "Finds All persons in db", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/findall", method = RequestMethod.GET)
-    public @ResponseBody List<Person> viewAll() {
-
-        log.info("finds all persons in db...");
-        List<Person> allPersons = trackService.findAll();
-
-
-        return allPersons;
     }
 
     @ApiOperation(value = "TrackUser", nickname = "TrackUser", produces = "application/json")
