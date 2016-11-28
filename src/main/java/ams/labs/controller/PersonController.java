@@ -1,6 +1,5 @@
 package ams.labs.controller;
 
-import ams.labs.Application;
 import ams.labs.model.Person;
 import ams.labs.service.PersonService;
 import io.swagger.annotations.Api;
@@ -16,14 +15,14 @@ import java.util.List;
 @RestController
 public class PersonController {
 
-    private final static Logger log = LoggerFactory.getLogger(Application.class);
+    private final static Logger log = LoggerFactory.getLogger(PersonController.class);
 
     @Autowired
     private PersonService personService;
 
 
     @ApiOperation(value = "Finds All persons in db", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/findall", method = RequestMethod.GET)
+    @RequestMapping(value = "/person/findall", method = RequestMethod.GET)
     public @ResponseBody List<Person> viewAll() {
 
         log.info("finds all persons in db...");
@@ -33,14 +32,14 @@ public class PersonController {
     }
 
     @ApiOperation(value = "Finds by name", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/find/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/person/{name}", method = RequestMethod.GET)
     public @ResponseBody Person findPerson(@PathVariable("name") String name) {
         Person person = personService.findByName(name);
         return person;
     }
 
     @ApiOperation(value = "Add", nickname = "Add", produces = "application/json")
-    @RequestMapping(value = "/add/{name}", method = RequestMethod.POST)
+    @RequestMapping(value = "/person/add/{name}", method = RequestMethod.POST)
     public @ResponseBody String addUser(@PathVariable("name") String name) {
 
         Person person = new Person(name);
@@ -50,7 +49,7 @@ public class PersonController {
     }
 
     @ApiOperation(value = "Delete All", nickname = "Delete All", produces = "application/json")
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/person/delete", method = RequestMethod.DELETE)
     public @ResponseBody String deleteAll() {
 
         log.info("deleting all in db...");

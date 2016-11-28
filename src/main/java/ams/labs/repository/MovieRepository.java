@@ -10,8 +10,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-
-
 @RepositoryRestResource(collectionResourceRel = "movies", path = "movies")
 public interface MovieRepository extends GraphRepository<Movie> {
     Movie findByTitle(@Param("title") String title);

@@ -18,18 +18,18 @@ public class Movie {
     private int released;
     private String tagline;
 
-    @Relationship(type = "ACTED_IN", direction = Relationship.UNDIRECTED)
-    public Set<Role> roles;
+//    @Relationship(type = "ACTED_IN", direction = Relationship.INCOMING)
+//    public Set<Role> roles;
 
     public Movie() { }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    public Collection<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
     public String getTitle() {
         return title;
