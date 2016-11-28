@@ -39,7 +39,7 @@ public class SwaggerConfiguration {
 
     private Predicate<String> paths() {
         return or(
-                regex("/track.*"), regex("/delete.*"), regex("/add.*"), regex("/findall.*"));
+                regex("/track.*"), regex("/delete.*"), regex("/add.*"), regex("/findall.*"), regex("/find.*"));
     }
 
 }

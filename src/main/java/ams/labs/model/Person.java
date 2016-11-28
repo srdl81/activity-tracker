@@ -16,6 +16,7 @@ public class Person {
     @GraphId private Long id;
 
     private String name;
+    private int born;
 
     private Person() {
         // Empty constructor required as of Neo4j API 2.0.5
@@ -25,27 +26,23 @@ public class Person {
         this.name = name;
     }
 
-    /**
-     * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
-     * to ignore the direction of the relationship.
-     * https://dzone.com/articles/modelling-data-neo4j
-     */
-    @Relationship(type = "TEAMMATE", direction = Relationship.UNDIRECTED)
-    public Set<Person> teammates;
+    @Relationship(type = "ACTED_IN", direction = Relationship.UNDIRECTED)
+    public Set<Movie> movies;
 
-    public void worksWith(Person person) {
-        if (teammates == null) {
-            teammates = new HashSet<>();
+    public void actedIn(Movie movie) {
+        if (movies == null) {
+            movies = new HashSet<>();
         }
-        teammates.add(person);
+
+        movies.add(movie);
     }
 
     public String toString() {
 
-        return this.name + "'s teammates => "
-                + Optional.ofNullable(this.teammates).orElse(
+        return this.name + "'s movies => "
+                + Optional.ofNullable(this.movies).orElse(
                 Collections.emptySet()).stream().map(
-                person -> person.getName()).collect(Collectors.toList());
+                movie -> movie.getTitle()).collect(Collectors.toList());
     }
 
     public String getName() {
@@ -54,5 +51,13 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setBorn(int born) {
+        this.born = born;
+    }
+
+    public int getBorn() {
+        return born;
     }
 }

@@ -2,7 +2,7 @@ package ams.labs.service;
 
 
 import ams.labs.model.Person;
-import ams.labs.repository.TrackRepository;
+import ams.labs.repository.PersonRepository;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TrackService {
+public class PersonService {
 
-    final Logger logger = LoggerFactory.getLogger(TrackService.class);
+    final Logger logger = LoggerFactory.getLogger(PersonService.class);
 
     @Autowired
-    private TrackRepository repository;
+    private PersonRepository repository;
 
     public void save(Person person) {
         repository.save(person);
@@ -25,18 +25,6 @@ public class TrackService {
 
     public void deleteAll() {
         repository.deleteAll();
-    }
-
-    public void deletePerson(String name) {
-
-        Person person = findByName(name);
-
-        if(person == null) {
-            throw new IllegalArgumentException(String.format("Person with name '%s' could not be found in database. " +
-                    "Could not delete a person that does not exists in db.", name));
-        }
-
-        repository.delete(person);
     }
 
     public Person findByName(String name) {
