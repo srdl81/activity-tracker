@@ -2,6 +2,7 @@ package ams.labs.model;
 
 import org.neo4j.ogm.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -16,6 +17,14 @@ public class User {
 
     @Relationship(type = "LOOKED_AT")
     private List<JobAdvertisement> jobAdvertisements;
+
+    public void lookedAt(JobAdvertisement jobAdvertisement) {
+        if (jobAdvertisements == null) {
+            jobAdvertisements = new ArrayList<>();
+        }
+
+        jobAdvertisements.add(jobAdvertisement);
+    }
 
     public User() { }
 

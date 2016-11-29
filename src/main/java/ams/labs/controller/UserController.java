@@ -37,6 +37,7 @@ public class UserController {
         return user;
     }
 
+
     @ApiOperation(value = "Add", nickname = "Add", produces = "application/json")
     @RequestMapping(value = "/user/add/{id}", method = RequestMethod.POST)
     public @ResponseBody User addUser(@PathVariable("id") String id) {
