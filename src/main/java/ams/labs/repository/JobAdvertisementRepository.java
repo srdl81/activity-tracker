@@ -25,9 +25,9 @@ public interface JobAdvertisementRepository extends GraphRepository<JobAdvertise
     List<Map<String,Object>> fetchMostWatchedJobAdvertisements();
 
     @Query("MATCH (User)-[:LOOKED_AT]->(job:JobAdvertisement) \n" +
-           "WHERE job.place = {place}\n" +
+           "WHERE job.location = {location}\n" +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed ORDER BY viewed DESC LIMIT 10")
-    List<Map<String,Object>> fetchMostWatchedJobAdsForPlace(@Param("place") String place);
+    List<Map<String,Object>> fetchMostWatchedJobAdsForLocation(@Param("location") String location);
 }
 
 

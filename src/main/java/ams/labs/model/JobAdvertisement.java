@@ -2,9 +2,6 @@ package ams.labs.model;
 
 import org.neo4j.ogm.annotation.*;
 
-import java.util.Collection;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
@@ -14,7 +11,7 @@ public class JobAdvertisement {
 
     @GraphId Long id;
     private String jobAdvertisementId;
-    private String place;
+    private String location;
 
     public JobAdvertisement() { }
 
@@ -26,11 +23,11 @@ public class JobAdvertisement {
         this.jobAdvertisementId = jobAdvertisementId;
     }
 
-    public String getPlace() {
-        return place;
+    public String getLocation() {
+        return location;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

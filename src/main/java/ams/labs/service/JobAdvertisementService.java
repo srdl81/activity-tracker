@@ -42,7 +42,7 @@ public class JobAdvertisementService {
         return repository.fetchMostWatchedJobAdvertisements();
     }
 
-    public List<Map<String, Object>> fetchMostWatchedJobAdsForPlace(String place) {
-        return repository.fetchMostWatchedJobAdsForPlace(place);
+    public List<Map<String, Object>> fetchMostWatchedJobAdsForLocation(String location) {
+        return repository.fetchMostWatchedJobAdsForLocation(location);
     }
 }
