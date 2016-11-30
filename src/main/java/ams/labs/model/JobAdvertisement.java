@@ -11,7 +11,9 @@ public class JobAdvertisement {
 
     @GraphId Long id;
     private String jobAdvertisementId;
-    private String location;
+
+    @Relationship(type = "LOCATED_IN")
+    private Location location;
 
     public JobAdvertisement() { }
 
@@ -23,11 +25,11 @@ public class JobAdvertisement {
         this.jobAdvertisementId = jobAdvertisementId;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 }

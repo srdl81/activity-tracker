@@ -1,6 +1,7 @@
 package ams.labs.controller;
 
 import ams.labs.model.JobAdvertisement;
+import ams.labs.model.Location;
 import ams.labs.service.JobAdvertisementService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +46,7 @@ public class JobAdvertisementController {
         if (job == null) {
             job = new JobAdvertisement();
             job.setJobAdvertisementId(jobAdvertisementId);
-            job.setLocation(location);
+            job.setLocation(new Location(location));
         }
 
         service.save(job);

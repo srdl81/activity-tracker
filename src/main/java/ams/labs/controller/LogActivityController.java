@@ -1,8 +1,10 @@
 package ams.labs.controller;
 
 import ams.labs.model.JobAdvertisement;
+import ams.labs.model.Location;
 import ams.labs.model.User;
 import ams.labs.service.JobAdvertisementService;
+import ams.labs.service.LocationService;
 import ams.labs.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +28,10 @@ public class LogActivityController {
     @Autowired
     private JobAdvertisementService jobAdvertisementService;
 
+    @Autowired
+    private LocationService locationService;
+
+
     @ApiOperation(value = "mostWatcheds", nickname = "mostWatcheds", produces = "application/json")
     @RequestMapping(value = "/statistics/mostviews/jobs", method = RequestMethod.GET)
     public @ResponseBody List<Map<String, Object>> getTop() {
@@ -43,8 +49,10 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/user/{userId}/watch/{jobId}", method = RequestMethod.GET)
-    public @ResponseBody User logUser(@PathVariable("userId") String userId, @PathVariable("jobId") String jobId) {
+    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{location}", method = RequestMethod.GET)
+    public @ResponseBody User logUser(@PathVariable("userId") String userId,
+                                      @PathVariable("jobId") String jobId,
+                                      @PathVariable("location") String locationParam) {
 
         User user = userService.findByUserId(userId);
         if (user == null) {
@@ -53,10 +61,17 @@ public class LogActivityController {
             userService.save(user);
         }
 
+        Location location = locationService.findByLocationName(locationParam);
+        if (location == null) {
+            location = new Location(locationParam);
+            locationService.save(location);
+        }
+
         JobAdvertisement job = jobAdvertisementService.findByJobAdvertisementId(jobId);
         if (job == null) {
             job = new JobAdvertisement();
             job.setJobAdvertisementId(jobId);
+            job.setLocation(location);
             jobAdvertisementService.save(job);
         }
 
