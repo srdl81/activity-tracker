@@ -14,6 +14,7 @@ public class JobAdvertisement {
 
     @GraphId Long id;
     private String jobAdvertisementId;
+    private String place;
 
     public JobAdvertisement() { }
 
@@ -25,5 +26,11 @@ public class JobAdvertisement {
         this.jobAdvertisementId = jobAdvertisementId;
     }
 
+    public String getPlace() {
+        return place;
+    }
 
+    public void setPlace(String place) {
+        this.place = place;
+    }
 }

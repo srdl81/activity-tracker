@@ -41,4 +41,8 @@ public class JobAdvertisementService {
     public List<Map<String, Object>> fetchMostWatchedJobAdvertisements() {
         return repository.fetchMostWatchedJobAdvertisements();
     }
+
+    public List<Map<String, Object>> fetchMostWatchedJobAdsForPlace(String place) {
+        return repository.fetchMostWatchedJobAdsForPlace(place);
+    }
 }

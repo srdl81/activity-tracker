@@ -38,15 +38,19 @@ public class JobAdvertisementController {
     }
 
     @ApiOperation(value = "save", nickname = "save", produces = "application/json")
-    @RequestMapping(value = "/jobs/save/{id}", method = RequestMethod.GET)
-    public String save(@PathVariable("id") String id) {
+    @RequestMapping(value = "/jobs/save/{jobAdvertisementId}/place/{place}", method = RequestMethod.GET)
+    public JobAdvertisement save(@PathVariable("jobAdvertisementId") String jobAdvertisementId, @PathVariable("place") String place) {
 
-        JobAdvertisement job = new JobAdvertisement();
-        job.setJobAdvertisementId(id);
+        JobAdvertisement job = service.findByJobAdvertisementId(jobAdvertisementId);
+        if (job == null) {
+            job = new JobAdvertisement();
+            job.setJobAdvertisementId(jobAdvertisementId);
+            job.setPlace(place);
+        }
 
         service.save(job);
 
-        return "saved";
+        return job;
     }
 
 }

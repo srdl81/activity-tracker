@@ -34,6 +34,14 @@ public class LogActivityController {
         return mostWatcheds;
     }
 
+    @ApiOperation(value = "mostWatcheds for place", nickname = "mostWatcheds for place", produces = "application/json")
+    @RequestMapping(value = "/statistics/mostviews/place/{place}", method = RequestMethod.GET)
+    public @ResponseBody List<Map<String, Object>> getTop10ForPlace(@PathVariable("place") String place) {
+        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsForPlace(place);
+
+        return mostWatcheds;
+    }
+
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/watch/{jobId}", method = RequestMethod.GET)
     public @ResponseBody User logUser(@PathVariable("userId") String userId, @PathVariable("jobId") String jobId) {
