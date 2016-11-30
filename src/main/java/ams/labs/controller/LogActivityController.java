@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Api(value = "Log Activity", description = "Track User Activites")
 @RestController
 public class LogActivityController {
@@ -23,7 +26,13 @@ public class LogActivityController {
     @Autowired
     private JobAdvertisementService jobAdvertisementService;
 
+    @ApiOperation(value = "mostWatcheds", nickname = "mostWatcheds", produces = "application/json")
+    @RequestMapping(value = "/statistics/mostviews/jobs", method = RequestMethod.GET)
+    public @ResponseBody List<Map<String, Object>> getTop() {
+        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdvertisements();
 
+        return mostWatcheds;
+    }
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/watch/{jobId}", method = RequestMethod.GET)

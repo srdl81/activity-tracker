@@ -40,7 +40,8 @@ public class SwaggerConfiguration {
     private Predicate<String> paths() {
         return or(
                 regex("/user.*"),
-                regex("/jobs.*"));
+                regex("/jobs.*"),
+                regex("/statistics.*"));
     }
 
 }

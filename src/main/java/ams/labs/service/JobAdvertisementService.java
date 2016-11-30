@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class JobAdvertisementService {
@@ -35,5 +36,9 @@ public class JobAdvertisementService {
         Iterable<JobAdvertisement> jobsIterable = repository.findAll();
 
         return Lists.newArrayList(jobsIterable);
+    }
+
+    public List<Map<String, Object>> fetchMostWatchedJobAdvertisements() {
+        return repository.fetchMostWatchedJobAdvertisements();
     }
 }
