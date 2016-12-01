@@ -43,7 +43,7 @@ public class UserController {
     public @ResponseBody User addUser(@PathVariable("id") String id) {
 
         User user = new User();
-        user.setUserId(id);
+        user.setUserId(new Long(id));
 
         service.save(user);
 

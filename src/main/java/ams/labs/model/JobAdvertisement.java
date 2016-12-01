@@ -10,18 +10,18 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 public class JobAdvertisement {
 
     @GraphId Long id;
-    private String jobAdvertisementId;
+    private Long jobAdvertisementId;
 
     @Relationship(type = "LOCATED_IN")
     private Location location;
 
     public JobAdvertisement() { }
 
-    public String getJobAdvertisementId() {
+    public Long getJobAdvertisementId() {
         return jobAdvertisementId;
     }
 
-    public void setJobAdvertisementId(String jobAdvertisementId) {
+    public void setJobAdvertisementId(Long jobAdvertisementId) {
         this.jobAdvertisementId = jobAdvertisementId;
     }
 

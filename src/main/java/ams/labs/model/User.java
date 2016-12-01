@@ -13,7 +13,7 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 public class User {
 
     @GraphId Long id;
-    private String userId;
+    private Long userId;
 
     @Relationship(type = "LOOKED_AT")
     private List<JobAdvertisement> jobAdvertisements;
@@ -28,11 +28,11 @@ public class User {
 
     public User() { }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

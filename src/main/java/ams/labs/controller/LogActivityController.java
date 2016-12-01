@@ -57,7 +57,7 @@ public class LogActivityController {
         User user = userService.findByUserId(userId);
         if (user == null) {
             user = new User();
-            user.setUserId(userId);
+            user.setUserId(new Long(userId));
             userService.save(user);
         }
 
@@ -70,7 +70,7 @@ public class LogActivityController {
         JobAdvertisement job = jobAdvertisementService.findByJobAdvertisementId(jobId);
         if (job == null) {
             job = new JobAdvertisement();
-            job.setJobAdvertisementId(jobId);
+            job.setJobAdvertisementId(new Long(jobId));
             job.setLocation(location);
             jobAdvertisementService.save(job);
         }
