@@ -50,14 +50,14 @@ public class LogActivityController {
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{location}", method = RequestMethod.GET)
-    public @ResponseBody User logUser(@PathVariable("userId") String userId,
-                                      @PathVariable("jobId") String jobId,
+    public @ResponseBody User logUser(@PathVariable("userId") Long userId,
+                                      @PathVariable("jobId") Long jobId,
                                       @PathVariable("location") String locationParam) {
 
-        User user = userService.findByUserId(new Long(userId));
+        User user = userService.findByUserId(userId);
         if (user == null) {
             user = new User();
-            user.setUserId(new Long(userId));
+            user.setUserId(userId);
             userService.save(user);
         }
 
@@ -67,10 +67,10 @@ public class LogActivityController {
             locationService.save(location);
         }
 
-        JobAdvertisement job = jobAdvertisementService.findByJobAdvertisementId(new Long(jobId));
+        JobAdvertisement job = jobAdvertisementService.findByJobAdvertisementId(jobId);
         if (job == null) {
             job = new JobAdvertisement();
-            job.setJobAdvertisementId(new Long(jobId));
+            job.setJobAdvertisementId(jobId);
             job.setLocation(location);
             jobAdvertisementService.save(job);
         }

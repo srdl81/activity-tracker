@@ -32,18 +32,18 @@ public class UserController {
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public @ResponseBody User findUser(@PathVariable("id") String id) {
-        User user = service.findByUserId(new Long(id));
+    public @ResponseBody User findUser(@PathVariable("id") Long id) {
+        User user = service.findByUserId(id);
         return user;
     }
 
 
     @ApiOperation(value = "Add", nickname = "Add", produces = "application/json")
     @RequestMapping(value = "/user/add/{id}", method = RequestMethod.POST)
-    public @ResponseBody User addUser(@PathVariable("id") String id) {
+    public @ResponseBody User addUser(@PathVariable("id") Long id) {
 
         User user = new User();
-        user.setUserId(new Long(id));
+        user.setUserId(id);
 
         service.save(user);
 
