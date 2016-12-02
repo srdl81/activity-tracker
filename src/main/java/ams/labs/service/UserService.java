@@ -27,7 +27,7 @@ public class UserService {
         repository.deleteAll();
     }
 
-    public User findByUserId(String id) {
+    public User findByUserId(Long id) {
         return repository.findByUserId(id);
     }
 

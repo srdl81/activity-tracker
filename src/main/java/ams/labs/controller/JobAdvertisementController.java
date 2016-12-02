@@ -34,7 +34,7 @@ public class JobAdvertisementController {
     @RequestMapping(value = "/jobs/id/{id}", method = RequestMethod.GET)
     public JobAdvertisement findByJobAdvertisementId(@PathVariable("id") String id) {
 
-        JobAdvertisement jobAdvertisement = service.findByJobAdvertisementId(id);
+        JobAdvertisement jobAdvertisement = service.findByJobAdvertisementId(new Long(id));
         return jobAdvertisement;
     }
 
@@ -42,7 +42,7 @@ public class JobAdvertisementController {
     @RequestMapping(value = "/jobs/save/{jobAdvertisementId}/location/{location}", method = RequestMethod.GET)
     public JobAdvertisement save(@PathVariable("jobAdvertisementId") String jobAdvertisementId, @PathVariable("location") String location) {
 
-        JobAdvertisement job = service.findByJobAdvertisementId(jobAdvertisementId);
+        JobAdvertisement job = service.findByJobAdvertisementId(new Long(jobAdvertisementId));
         if (job == null) {
             job = new JobAdvertisement();
             job.setJobAdvertisementId(new Long(jobAdvertisementId));

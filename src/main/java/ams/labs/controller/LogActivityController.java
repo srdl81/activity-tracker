@@ -54,7 +54,7 @@ public class LogActivityController {
                                       @PathVariable("jobId") String jobId,
                                       @PathVariable("location") String locationParam) {
 
-        User user = userService.findByUserId(userId);
+        User user = userService.findByUserId(new Long(userId));
         if (user == null) {
             user = new User();
             user.setUserId(new Long(userId));
@@ -67,7 +67,7 @@ public class LogActivityController {
             locationService.save(location);
         }
 
-        JobAdvertisement job = jobAdvertisementService.findByJobAdvertisementId(jobId);
+        JobAdvertisement job = jobAdvertisementService.findByJobAdvertisementId(new Long(jobId));
         if (job == null) {
             job = new JobAdvertisement();
             job.setJobAdvertisementId(new Long(jobId));

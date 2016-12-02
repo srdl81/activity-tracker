@@ -28,7 +28,7 @@ public class JobAdvertisementService {
         repository.deleteAll();
     }
 
-    public JobAdvertisement findByJobAdvertisementId(String jobAdvertisementId) {
+    public JobAdvertisement findByJobAdvertisementId(Long jobAdvertisementId) {
         return repository.findByJobAdvertisementId(jobAdvertisementId);
     }
 

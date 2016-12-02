@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RepositoryRestResource(collectionResourceRel = "jobAdvertisements", path = "jobAdvertisements")
 public interface JobAdvertisementRepository extends GraphRepository<JobAdvertisement> {
-    JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") String jobAdvertisementId);
+    JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") Long jobAdvertisementId);
 
     @Query("MATCH (m:Movie) WHERE m.title =~ ('(?i).*'+{title}+'.*') RETURN m")
     Collection<JobAdvertisement> findByTitleContaining(@Param("title") String title);

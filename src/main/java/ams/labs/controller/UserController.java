@@ -33,7 +33,7 @@ public class UserController {
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public @ResponseBody User findUser(@PathVariable("id") String id) {
-        User user = service.findByUserId(id);
+        User user = service.findByUserId(new Long(id));
         return user;
     }
 
