@@ -15,12 +15,6 @@ import java.util.Map;
 public interface JobAdvertisementRepository extends GraphRepository<JobAdvertisement> {
     JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") Long jobAdvertisementId);
 
-    @Query("MATCH (m:Movie) WHERE m.title =~ ('(?i).*'+{title}+'.*') RETURN m")
-    Collection<JobAdvertisement> findByTitleContaining(@Param("title") String title);
-
-    @Query("MATCH (m:Movie)<-[:ACTED_IN]-(a:Person) RETURN m.title as movie, collect(a.name) as cast LIMIT {limit}")
-    List<Map<String,Object>> graph(@Param("limit") int limit);
-
     @Query("MATCH (job:JobAdvertisement)<-[:LOOKED_AT]-(User) RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed ORDER BY viewed DESC LIMIT 10")
     List<Map<String,Object>> fetchMostWatchedJobAdvertisements();
 
