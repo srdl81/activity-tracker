@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@Api(value = "Track User", description = "Track User Activites")
+@Api(value = "User Entity", description = "CRUD Methods for User Entity")
 @RestController
 public class UserController {
 

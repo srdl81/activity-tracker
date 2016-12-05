@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 
-@Api(value = "Location Entity", description = "Location Entity CRUD")
+@Api(value = "Location Entity", description = "CRUD Methods for Location Entity")
 @RestController
 public class LocationController {
 
