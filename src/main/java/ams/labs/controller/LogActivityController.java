@@ -1,13 +1,7 @@
 package ams.labs.controller;
 
-import ams.labs.model.JobAdvertisement;
-import ams.labs.model.Location;
-import ams.labs.model.Profession;
-import ams.labs.model.User;
-import ams.labs.service.JobAdvertisementService;
-import ams.labs.service.LocationService;
-import ams.labs.service.ProfessionService;
-import ams.labs.service.UserService;
+import ams.labs.model.*;
+import ams.labs.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -36,6 +30,9 @@ public class LogActivityController {
     @Autowired
     private ProfessionService professionService;
 
+    @Autowired
+    private EmployerService employerService;
+
 
     @ApiOperation(value = "mostWatcheds", nickname = "mostWatcheds", produces = "application/json")
     @RequestMapping(value = "/statistics/mostviews/jobs", method = RequestMethod.GET)
@@ -62,11 +59,12 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{locationId}/y/{professionId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{locationId}/y/{professionId}/{employerId}", method = RequestMethod.GET)
     public @ResponseBody User logUser(@PathVariable("userId") Long userId,
                                       @PathVariable("jobId") Long jobId,
                                       @PathVariable("locationId") Long locationId,
-                                      @PathVariable("professionId") Long professionId) {
+                                      @PathVariable("professionId") Long professionId,
+                                      @PathVariable("employerId") Long employerId) {
 
         User user = userService.findByUserId(userId);
         if (user == null) {
@@ -100,6 +98,16 @@ public class LogActivityController {
 
         user.lookedAt(job);
         userService.save(user);
+
+        Employer employer = employerService.findByEmployerId(employerId);
+        if (employer == null) {
+            employer = new Employer();
+            employer.setEmployerId(employerId);
+            employerService.save(employer);
+        }
+
+        employer.advertise(job);
+        employerService.save(employer);
 
         return user;
     }
