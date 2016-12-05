@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LocationRepository extends GraphRepository<Location> {
-    Location findByName(String name);
+    Location findByLocationId(Long locationId);
 }

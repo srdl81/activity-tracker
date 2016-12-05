@@ -42,11 +42,11 @@ public class JobAdvertisementService {
         return repository.fetchMostWatchedJobAdvertisements();
     }
 
-    public List<Map<String, Object>> fetchMostWatchedJobAdsForLocation(String location) {
-        return repository.fetchMostWatchedJobAdsForLocation(location);
-    }
-
     public List<Map<String, Object>> fetchMostWatchedJobAdsByForProfession(Long professionId) {
         return repository.fetchMostWatchedJobAdsForProfession(professionId);
+    }
+
+    public List<Map<String, Object>> fetchMostWatchedJobAdsForLocation(Long locationId) {
+        return repository.fetchMostWatchedJobAdsForLocation(locationId);
     }
 }

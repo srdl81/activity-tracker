@@ -22,8 +22,8 @@ public class LocationService {
         repository.deleteAll();
     }
 
-    public Location findByLocationName(String name) {
-        return repository.findByName(name);
+    public Location findByLocationId(Long locationId) {
+        return repository.findByLocationId(locationId);
     }
 
     public List<Location> findAll() {

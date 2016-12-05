@@ -46,9 +46,9 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Most viewed Job Ad for a location", nickname = "Job Ad for a location", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviews/location/{location}", method = RequestMethod.GET)
-    public @ResponseBody List<Map<String, Object>> getTop10ForLocation(@PathVariable("location") String location) {
-        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsForLocation(location);
+    @RequestMapping(value = "/statistics/mostviews/location/{locationId}", method = RequestMethod.GET)
+    public @ResponseBody List<Map<String, Object>> getTop10ForLocation(@PathVariable("locationId") Long locationId) {
+        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsForLocation(locationId);
 
         return mostWatcheds;
     }
@@ -62,12 +62,11 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{location}/y/{yrkesid}/n/{yrkesnamn}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{locationId}/y/{professionId}", method = RequestMethod.GET)
     public @ResponseBody User logUser(@PathVariable("userId") Long userId,
                                       @PathVariable("jobId") Long jobId,
-                                      @PathVariable("location") String locationParam,
-                                      @PathVariable("yrkesid")  Long professionId,
-                                      @PathVariable("yrkesnamn") String professionName) {
+                                      @PathVariable("locationId") Long locationId,
+                                      @PathVariable("professionId") Long professionId) {
 
         User user = userService.findByUserId(userId);
         if (user == null) {
@@ -80,13 +79,13 @@ public class LogActivityController {
         if (profession == null) {
             profession = new Profession();
             profession.setProfessionId(professionId);
-            profession.setName(professionName);
             professionService.save(profession);
         }
 
-        Location location = locationService.findByLocationName(locationParam);
+        Location location = locationService.findByLocationId(locationId);
         if (location == null) {
-            location = new Location(locationParam);
+            location = new Location();
+            location.setLocationId(locationId);
             locationService.save(location);
         }
 

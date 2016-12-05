@@ -10,6 +10,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class Location {
 
     @GraphId Long id;
+    private Long locationId;
     private String name;
 
     public Location(String name) {
@@ -24,5 +25,13 @@ public class Location {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
     }
 }
