@@ -2,9 +2,11 @@ package ams.labs.controller;
 
 import ams.labs.model.JobAdvertisement;
 import ams.labs.model.Location;
+import ams.labs.model.Profession;
 import ams.labs.model.User;
 import ams.labs.service.JobAdvertisementService;
 import ams.labs.service.LocationService;
+import ams.labs.service.ProfessionService;
 import ams.labs.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +33,9 @@ public class LogActivityController {
     @Autowired
     private LocationService locationService;
 
+    @Autowired
+    private ProfessionService professionService;
+
 
     @ApiOperation(value = "mostWatcheds", nickname = "mostWatcheds", produces = "application/json")
     @RequestMapping(value = "/statistics/mostviews/jobs", method = RequestMethod.GET)
@@ -48,17 +53,35 @@ public class LogActivityController {
         return mostWatcheds;
     }
 
+    @ApiOperation(value = "Most viewed Job Ad For a profession", nickname = "Job Ad for a profession", produces = "application/json")
+    @RequestMapping(value = "/statistics/mostviews/yrkesid/{yrkesid}", method = RequestMethod.GET)
+    public @ResponseBody List<Map<String, Object>> getTop10ForYrkesNamn(@PathVariable("yrkesid") Long professionId) {
+        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsByForProfession(professionId);
+
+        return mostWatcheds;
+    }
+
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
-    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{location}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{location}/y/{yrkesid}/n/{yrkesnamn}", method = RequestMethod.GET)
     public @ResponseBody User logUser(@PathVariable("userId") Long userId,
                                       @PathVariable("jobId") Long jobId,
-                                      @PathVariable("location") String locationParam) {
+                                      @PathVariable("location") String locationParam,
+                                      @PathVariable("yrkesid")  Long professionId,
+                                      @PathVariable("yrkesnamn") String professionName) {
 
         User user = userService.findByUserId(userId);
         if (user == null) {
             user = new User();
             user.setUserId(userId);
             userService.save(user);
+        }
+
+        Profession profession = professionService.findByProfessionId(professionId);
+        if (profession == null) {
+            profession = new Profession();
+            profession.setProfessionId(professionId);
+            profession.setName(professionName);
+            professionService.save(profession);
         }
 
         Location location = locationService.findByLocationName(locationParam);
@@ -72,6 +95,7 @@ public class LogActivityController {
             job = new JobAdvertisement();
             job.setJobAdvertisementId(jobId);
             job.setLocation(location);
+            job.setProfession(profession);
             jobAdvertisementService.save(job);
         }
 

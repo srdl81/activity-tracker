@@ -15,6 +15,9 @@ public class JobAdvertisement {
     @Relationship(type = "LOCATED_IN")
     private Location location;
 
+    @Relationship(type = "HAS_A")
+    private Profession profession;
+
     public JobAdvertisement() { }
 
     public Long getJobAdvertisementId() {
@@ -31,5 +34,13 @@ public class JobAdvertisement {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Profession getProfession() {
+        return profession;
+    }
+
+    public void setProfession(Profession profession) {
+        this.profession = profession;
     }
 }
