@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @Api(value = "Location Entity", description = "CRUD Methods for Location Entity")
@@ -31,6 +32,31 @@ public class LocationController {
 
 
         return "SAVED...";
+    }
+
+    @ApiOperation(value = "Finds All Locations in db", nickname = "Find All", produces = "application/json")
+    @RequestMapping(value = "/location/findall", method = RequestMethod.GET)
+    public @ResponseBody List<Location> viewAll() {
+
+        List<Location> locations = service.findAll();
+
+        return locations;
+    }
+
+    @ApiOperation(value = "Find by id", nickname = "Find by id", produces = "application/json")
+    @RequestMapping(value = "/location/{id}", method = RequestMethod.GET)
+    public @ResponseBody Location findLocationById(@PathVariable("id") Long id) {
+        Location location = service.findByLocationId(id);
+        return location;
+    }
+
+    @ApiOperation(value = "Delete All", nickname = "Delete All", produces = "application/json")
+    @RequestMapping(value = "/location/delete", method = RequestMethod.DELETE)
+    public @ResponseBody String deleteAll() {
+
+        service.deleteAll();
+
+        return "Deleted All...";
     }
 
 
