@@ -18,6 +18,8 @@ public class JobAdvertisement {
     @Relationship(type = "HAS_A")
     private Profession profession;
 
+    private Employer employer;
+
     public JobAdvertisement() { }
 
     public Long getJobAdvertisementId() {

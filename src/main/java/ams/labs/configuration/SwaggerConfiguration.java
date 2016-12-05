@@ -43,7 +43,8 @@ public class SwaggerConfiguration {
                 regex("/jobs.*"),
                 regex("/statistics.*"),
                 regex("/location.*"),
-                regex("/profession.*"));
+                regex("/profession.*"),
+                regex("/employer.*"));
     }
 
 }
