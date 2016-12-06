@@ -58,6 +58,14 @@ public class LogActivityController {
         return mostWatcheds;
     }
 
+    @ApiOperation(value = "Most viewed JobAds By Employer", nickname = "Job Ad for a profession", produces = "application/json")
+    @RequestMapping(value = "/statistics/mostviews/employer/{employerId}", method = RequestMethod.GET)
+    public @ResponseBody List<Map<String, Object>> getTop10ByEmployer(@PathVariable("employerId") Long employerId) {
+        List<Map<String, Object>> mostWatched = jobAdvertisementService.fetchMostWatchedJobAdsByEmployer(employerId);
+
+        return mostWatched;
+    }
+
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{locationId}/y/{professionId}/{employerId}", method = RequestMethod.GET)
     public @ResponseBody User logUser(@PathVariable("userId") Long userId,

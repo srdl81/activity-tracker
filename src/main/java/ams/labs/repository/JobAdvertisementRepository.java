@@ -26,6 +26,11 @@ public interface JobAdvertisementRepository extends GraphRepository<JobAdvertise
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed " +
            "ORDER BY viewed DESC LIMIT 10")
     List<Map<String,Object>> fetchMostWatchedJobAdsForProfession(@Param("professionId") Long professionId);
+
+    @Query("MATCH (employer:Employer {employerId:{employerId}})-[ADVERTISE]->(job:JobAdvertisement)<-[LOOKED_AT]-() " +
+           "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed " +
+           "ORDER BY viewed DESC LIMIT 10")
+    List<Map<String,Object>> fetchMostWatchedJobAdsByEmployer(@Param("employerId") Long employerId);
 }
 
 
