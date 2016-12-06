@@ -34,38 +34,6 @@ public class LogActivityController {
     private EmployerService employerService;
 
 
-    @ApiOperation(value = "mostWatcheds", nickname = "mostViewedJobs", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviewed/jobs", method = RequestMethod.GET)
-    public @ResponseBody List<Map<String, Object>> getTop() {
-        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdvertisements();
-
-        return mostWatcheds;
-    }
-
-    @ApiOperation(value = "Most viewed Job Ad for a location", nickname = "Job Ad for a location", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviewed/location/{locationId}", method = RequestMethod.GET)
-    public @ResponseBody List<Map<String, Object>> getTop10ForLocation(@PathVariable("locationId") Long locationId) {
-        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsForLocation(locationId);
-
-        return mostWatcheds;
-    }
-
-    @ApiOperation(value = "Most viewed Job Ad For a profession", nickname = "Job Ad for a profession", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviewed/yrkesid/{yrkesid}", method = RequestMethod.GET)
-    public @ResponseBody List<Map<String, Object>> getTop10ForYrkesNamn(@PathVariable("yrkesid") Long professionId) {
-        List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsByForProfession(professionId);
-
-        return mostWatcheds;
-    }
-
-    @ApiOperation(value = "Most viewed JobAds By Employer", nickname = "Job Ad for a profession", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviewed/employer/{employerId}", method = RequestMethod.GET)
-    public @ResponseBody List<Map<String, Object>> getTop10ByEmployer(@PathVariable("employerId") Long employerId) {
-        List<Map<String, Object>> mostWatched = jobAdvertisementService.fetchMostWatchedJobAdsByEmployer(employerId);
-
-        return mostWatched;
-    }
-
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/looksat/job/{jobId}/in/{locationId}/y/{professionId}/{employerId}", method = RequestMethod.GET)
     public @ResponseBody User logUser(@PathVariable("userId") Long userId,
@@ -119,6 +87,5 @@ public class LogActivityController {
 
         return user;
     }
-
 
 }
