@@ -1,5 +1,6 @@
 package ams.labs.controller;
 
+
 import ams.labs.model.*;
 import ams.labs.service.*;
 import io.swagger.annotations.Api;
@@ -8,9 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 @Api(value = "Log Activity", description = "Track User Activites")
 @RestController
@@ -32,6 +30,17 @@ public class LogActivityController {
 
     @Autowired
     private EmployerService employerService;
+
+
+    @ApiOperation(value = "Log User Activity", nickname = "Log Activity", produces = "application/json")
+    @RequestMapping(value = "/user/{userId}/activity", method = RequestMethod.POST)
+    public MatchResultDTO logUserActivity(@RequestBody MatchResultDTO data,
+                                          @PathVariable("userId") Long userId) {
+
+        return data;
+
+    }
+
 
 
     @ApiOperation(value = "Finds by id", nickname = "Find All", produces = "application/json")
