@@ -34,8 +34,8 @@ public class LogActivityController {
     private EmployerService employerService;
 
 
-    @ApiOperation(value = "mostWatcheds", nickname = "mostWatcheds", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviews/jobs", method = RequestMethod.GET)
+    @ApiOperation(value = "mostWatcheds", nickname = "mostViewedJobs", produces = "application/json")
+    @RequestMapping(value = "/statistics/mostviewed/jobs", method = RequestMethod.GET)
     public @ResponseBody List<Map<String, Object>> getTop() {
         List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdvertisements();
 
@@ -43,7 +43,7 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Most viewed Job Ad for a location", nickname = "Job Ad for a location", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviews/location/{locationId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/statistics/mostviewed/location/{locationId}", method = RequestMethod.GET)
     public @ResponseBody List<Map<String, Object>> getTop10ForLocation(@PathVariable("locationId") Long locationId) {
         List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsForLocation(locationId);
 
@@ -51,7 +51,7 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Most viewed Job Ad For a profession", nickname = "Job Ad for a profession", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviews/yrkesid/{yrkesid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/statistics/mostviewed/yrkesid/{yrkesid}", method = RequestMethod.GET)
     public @ResponseBody List<Map<String, Object>> getTop10ForYrkesNamn(@PathVariable("yrkesid") Long professionId) {
         List<Map<String, Object>> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsByForProfession(professionId);
 
@@ -59,7 +59,7 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Most viewed JobAds By Employer", nickname = "Job Ad for a profession", produces = "application/json")
-    @RequestMapping(value = "/statistics/mostviews/employer/{employerId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/statistics/mostviewed/employer/{employerId}", method = RequestMethod.GET)
     public @ResponseBody List<Map<String, Object>> getTop10ByEmployer(@PathVariable("employerId") Long employerId) {
         List<Map<String, Object>> mostWatched = jobAdvertisementService.fetchMostWatchedJobAdsByEmployer(employerId);
 
