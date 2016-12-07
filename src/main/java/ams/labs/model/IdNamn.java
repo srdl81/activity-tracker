@@ -19,4 +19,12 @@ public class IdNamn {
     public void setNamn(String namn) {
         this.namn = namn;
     }
+
+    @Override
+    public String toString() {
+        return "IdNamn{" +
+                "id='" + id + '\'' +
+                ", namn='" + namn + '\'' +
+                '}';
+    }
 }

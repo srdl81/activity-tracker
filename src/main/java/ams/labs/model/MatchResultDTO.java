@@ -1,7 +1,6 @@
 package ams.labs.model;
 
 public class MatchResultDTO {
-
     private String id;
     private String arbetsgivareId;
     private String organisationsnummer;
@@ -57,4 +56,15 @@ public class MatchResultDTO {
         this.erbjudenArbetsplats = erbjudenArbetsplats;
     }
 
+    @Override
+    public String toString() {
+        return "MatchResultDTO{" +
+                "id='" + id + '\'' +
+                ", arbetsgivareId='" + arbetsgivareId + '\'' +
+                ", organisationsnummer='" + organisationsnummer + '\'' +
+                ", arbetsgivarenamn='" + arbetsgivarenamn + '\'' +
+                ", yrkesroll=" + yrkesroll +
+                ", erbjudenArbetsplats=" + erbjudenArbetsplats +
+                '}';
+    }
 }

@@ -19,7 +19,6 @@ public class Converter {
             throw new InvalidFormatException(String.format("Could not convert string='%s' to Long", profession.getId()));
         }
 
-
     }
 
 }

@@ -12,4 +12,11 @@ public class ErbjudenArbetsplats {
     public void setKommun(IdNamn kommun) {
         this.kommun = kommun;
     }
+
+    @Override
+    public String toString() {
+        return "ErbjudenArbetsplats{" +
+                "kommun=" + kommun +
+                '}';
+    }
 }
