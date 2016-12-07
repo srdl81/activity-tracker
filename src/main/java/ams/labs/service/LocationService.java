@@ -1,7 +1,9 @@
 package ams.labs.service;
 
+import ams.labs.model.ErbjudenArbetsplats;
 import ams.labs.model.Location;
 import ams.labs.repository.LocationRepository;
+import ams.labs.util.Converter;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,18 @@ public class LocationService {
     }
 
 
+    public Location fetchLocation(ErbjudenArbetsplats erbjudenArbetsplats) {
 
+        Long locationId = Converter.convertToLong(erbjudenArbetsplats.getKommun());
+
+        Location location = repository.findByLocationId(locationId);
+        if (location == null) {
+            location = new Location();
+            location.setLocationId(locationId);
+            location.setName(erbjudenArbetsplats.getKommun().getNamn());
+            repository.save(location);
+        }
+
+        return location;
+    }
 }

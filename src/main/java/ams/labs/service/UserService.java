@@ -36,4 +36,15 @@ public class UserService {
 
         return Lists.newArrayList(userIterable);
     }
+
+    public User fetchUser(Long userId) {
+        User user = repository.findByUserId(userId);
+        if (user == null) {
+            user = new User();
+            user.setUserId(userId);
+            repository.save(user);
+        }
+
+        return user;
+    }
 }

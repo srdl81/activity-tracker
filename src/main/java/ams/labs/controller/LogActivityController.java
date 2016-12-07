@@ -34,10 +34,27 @@ public class LogActivityController {
 
     @ApiOperation(value = "Log User Activity", nickname = "Log Activity", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/activity", method = RequestMethod.POST)
-    public MatchResultDTO logUserActivity(@RequestBody MatchResultDTO data,
+    public MatchResultDTO logUserActivity(@RequestBody MatchResultDTO matchResultDTO,
                                           @PathVariable("userId") Long userId) {
 
-        return data;
+        Profession profession = professionService.fetchProfession(matchResultDTO.getYrkesroll());
+        Location location = locationService.fetchLocation(matchResultDTO.getErbjudenArbetsplats());
+
+        User user = userService.fetchUser(userId);
+
+        //TODO: THIS SERVICE SHOULD DO IT ALL...
+        JobAdvertisement job = jobAdvertisementService.fetchJobAdvertisement(matchResultDTO, profession, location);
+
+        user.lookedAt(job);
+        userService.save(user);
+
+        Employer employer = employerService.fetchEmployer(matchResultDTO);
+
+        employer.advertise(job);
+        employerService.save(employer);
+
+
+        return matchResultDTO;
 
     }
 

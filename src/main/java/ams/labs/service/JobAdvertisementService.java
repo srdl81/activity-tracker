@@ -2,7 +2,11 @@ package ams.labs.service;
 
 
 import ams.labs.model.JobAdvertisement;
+import ams.labs.model.Location;
+import ams.labs.model.MatchResultDTO;
+import ams.labs.model.Profession;
 import ams.labs.repository.JobAdvertisementRepository;
+import ams.labs.util.Converter;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,5 +56,22 @@ public class JobAdvertisementService {
 
     public List<Map<String, Object>> fetchMostWatchedJobAdsByEmployer(Long employerId) {
         return repository.fetchMostWatchedJobAdsByEmployer(employerId);
+    }
+
+    public JobAdvertisement fetchJobAdvertisement(MatchResultDTO matchResultDTO, Profession profession, Location location) {
+
+        //TODO:handle this in Converter.convertToLong()
+        Long id = new Long(matchResultDTO.getId());
+
+        JobAdvertisement job = repository.findByJobAdvertisementId(id);
+        if (job == null) {
+            job = new JobAdvertisement();
+            job.setJobAdvertisementId(id);
+            job.setLocation(location);
+            job.setProfession(profession);
+            repository.save(job);
+        }
+
+        return job;
     }
 }

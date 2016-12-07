@@ -1,6 +1,7 @@
 package ams.labs.service;
 
 import ams.labs.model.Employer;
+import ams.labs.model.MatchResultDTO;
 import ams.labs.repository.EmployerRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,22 @@ public class EmployerService {
 
     public void deleteAll() {
         repository.deleteAll();
+    }
+
+    public Employer fetchEmployer(MatchResultDTO matchResultDTO) {
+
+        Long id = new Long(matchResultDTO.getArbetsgivareId());
+
+        Employer employer = repository.findByEmployerId(id);
+        if (employer == null) {
+            employer = new Employer();
+            employer.setEmployerId(id);
+            employer.setName(matchResultDTO.getArbetsgivarenamn());
+            employer.setRegistrationNumber(new Long(matchResultDTO.getOrganisationsnummer())); // TODO: HANDLE THIS LONG
+
+            repository.save(employer);
+        }
+
+        return employer;
     }
 }
