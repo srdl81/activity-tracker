@@ -2,7 +2,7 @@ package ams.labs.util;
 
 
 import ams.labs.exception.InvalidFormatException;
-import ams.labs.model.IdNamn;
+import ams.labs.dto.IdNamn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,7 +1,7 @@
 package ams.labs.repository;
 
 
-import ams.labs.model.Profession;
+import ams.labs.entity.Profession;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
 

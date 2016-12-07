@@ -1,7 +1,7 @@
 package ams.labs.service;
 
-import ams.labs.model.ErbjudenArbetsplats;
-import ams.labs.model.Location;
+import ams.labs.dto.ErbjudenArbetsplats;
+import ams.labs.entity.Location;
 import ams.labs.repository.LocationRepository;
 import ams.labs.util.Converter;
 import com.google.common.collect.Lists;

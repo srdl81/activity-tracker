@@ -1,7 +1,7 @@
 package ams.labs.service;
 
 
-import ams.labs.model.User;
+import ams.labs.entity.User;
 import ams.labs.repository.UserRepository;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;

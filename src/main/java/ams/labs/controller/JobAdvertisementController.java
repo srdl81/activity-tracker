@@ -1,7 +1,7 @@
 package ams.labs.controller;
 
-import ams.labs.model.JobAdvertisement;
-import ams.labs.model.Location;
+import ams.labs.entity.JobAdvertisement;
+import ams.labs.entity.Location;
 import ams.labs.service.JobAdvertisementService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,6 +1,6 @@
 package ams.labs.controller;
 
-import ams.labs.model.Location;
+import ams.labs.entity.Location;
 import ams.labs.service.LocationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

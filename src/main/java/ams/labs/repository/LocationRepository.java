@@ -1,6 +1,6 @@
 package ams.labs.repository;
 
-import ams.labs.model.Location;
+import ams.labs.entity.Location;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
 

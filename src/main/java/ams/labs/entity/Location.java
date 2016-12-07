@@ -1,26 +1,23 @@
-package ams.labs.model;
+package ams.labs.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 
-
 @JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity
-public class Profession {
+public class Location {
 
     @GraphId Long id;
-    private Long professionId;
+    private Long locationId;
     private String name;
 
-    public Long getProfessionId() {
-        return professionId;
+    public Location(String name) {
+        this.name = name;
     }
 
-    public void setProfessionId(Long professionId) {
-        this.professionId = professionId;
-    }
+    public Location() {}
 
     public String getName() {
         return name;
@@ -30,4 +27,11 @@ public class Profession {
         this.name = name;
     }
 
+    public Long getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
+    }
 }

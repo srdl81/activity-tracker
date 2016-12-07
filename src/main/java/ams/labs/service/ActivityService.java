@@ -1,6 +1,7 @@
 package ams.labs.service;
 
-import ams.labs.model.*;
+import ams.labs.dto.MatchResultDTO;
+import ams.labs.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

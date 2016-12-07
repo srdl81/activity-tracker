@@ -1,10 +1,8 @@
 package ams.labs.service;
 
 
-import ams.labs.controller.LogActivityController;
-import ams.labs.model.IdNamn;
-import ams.labs.model.MatchResultDTO;
-import ams.labs.model.Profession;
+import ams.labs.dto.IdNamn;
+import ams.labs.entity.Profession;
 import ams.labs.repository.ProfessionRepository;
 import ams.labs.util.Converter;
 import com.google.common.collect.Lists;

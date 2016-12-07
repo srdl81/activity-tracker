@@ -1,7 +1,7 @@
 package ams.labs.service;
 
-import ams.labs.model.Employer;
-import ams.labs.model.MatchResultDTO;
+import ams.labs.entity.Employer;
+import ams.labs.dto.MatchResultDTO;
 import ams.labs.repository.EmployerRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package ams.labs.model;
+package ams.labs.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;

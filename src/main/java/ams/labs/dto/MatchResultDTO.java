@@ -1,4 +1,4 @@
-package ams.labs.model;
+package ams.labs.dto;
 
 public class MatchResultDTO {
     private String id;

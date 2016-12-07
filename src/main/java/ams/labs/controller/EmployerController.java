@@ -1,6 +1,6 @@
 package ams.labs.controller;
 
-import ams.labs.model.Employer;
+import ams.labs.entity.Employer;
 import ams.labs.service.EmployerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

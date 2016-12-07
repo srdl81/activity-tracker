@@ -1,4 +1,4 @@
-package ams.labs.model;
+package ams.labs.entity;
 
 import org.neo4j.ogm.annotation.*;
 

@@ -1,12 +1,11 @@
 package ams.labs.service;
 
 
-import ams.labs.model.JobAdvertisement;
-import ams.labs.model.Location;
-import ams.labs.model.MatchResultDTO;
-import ams.labs.model.Profession;
+import ams.labs.entity.JobAdvertisement;
+import ams.labs.entity.Location;
+import ams.labs.dto.MatchResultDTO;
+import ams.labs.entity.Profession;
 import ams.labs.repository.JobAdvertisementRepository;
-import ams.labs.util.Converter;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

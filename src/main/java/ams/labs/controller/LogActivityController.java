@@ -1,7 +1,8 @@
 package ams.labs.controller;
 
 
-import ams.labs.model.*;
+import ams.labs.dto.MatchResultDTO;
+import ams.labs.entity.*;
 import ams.labs.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

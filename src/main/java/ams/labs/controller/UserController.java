@@ -1,6 +1,6 @@
 package ams.labs.controller;
 
-import ams.labs.model.User;
+import ams.labs.entity.User;
 import ams.labs.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
