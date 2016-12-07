@@ -1,11 +1,30 @@
 package ams.labs.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class MatchResultDTO {
+
+    @NotNull
+    @Size(min=6, max=15)
     private String id;
+
+    @NotNull
+    @Size(min=6, max=12)
     private String arbetsgivareId;
+
+    @NotNull
+    @Size(min=8, max=12)
     private String organisationsnummer;
+
+    @NotNull
+    @Size(min=1, max=30)
     private String arbetsgivarenamn;
+
+    @NotNull
     private IdNamn yrkesroll;
+
+    @NotNull
     private ErbjudenArbetsplats erbjudenArbetsplats;
 
     public String getId() {

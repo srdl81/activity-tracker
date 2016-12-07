@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @Api(value = "Log Activity", description = "Track User Activites")
 @RestController
@@ -23,7 +24,9 @@ public class LogActivityController {
 
     @ApiOperation(value = "Log User Activity", nickname = "Log Activity", produces = "application/json")
     @RequestMapping(value = "/user/{userId}/activity", method = RequestMethod.POST)
-    public JobAdvertisement logUserActivity(@RequestBody MatchResultDTO matchResultDTO, @PathVariable("userId") Long userId) {
+    public JobAdvertisement logUserActivity(@Valid @RequestBody MatchResultDTO matchResultDTO,
+                                            @PathVariable("userId") Long userId) {
+
 
         log.info(String.format("logging activity for DTO '%s'", matchResultDTO));
         return activityService.logActivity(matchResultDTO, userId);
