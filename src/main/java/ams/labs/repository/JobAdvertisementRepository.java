@@ -13,19 +13,20 @@ import java.util.Map;
 public interface JobAdvertisementRepository extends GraphRepository<JobAdvertisement> {
     JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") Long jobAdvertisementId);
 
-    @Query("MATCH (job:JobAdvertisement)<-[:LOOKED_AT]-(User) RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed ORDER BY viewed DESC LIMIT 10")
+    @Query("MATCH (job:JobAdvertisement)<-[:LOOKED_AT]-(u:User) " +
+           "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed ORDER BY viewed DESC LIMIT 10")
     List<Map<String,Object>> fetchMostWatchedJobAdvertisements();
 
     @Query("MATCH (u:User)-[LOOKED_AT]->(job:JobAdvertisement)-[LOCATED_IN]->(Location {locationId: {locationId} }) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed ORDER BY viewed DESC LIMIT 10")
     List<Map<String,Object>> fetchMostWatchedJobAdsForLocation(@Param("locationId") Long locationId);
 
-    @Query("MATCH ()-[LOOKED_AT]->(job:JobAdvertisement)-[HAS_A]->(profession:Profession {professionId:{professionId}}) " +
+    @Query("MATCH (u:User)-[LOOKED_AT]->(job:JobAdvertisement)-[HAS_A]->(profession:Profession {professionId:{professionId}}) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed " +
            "ORDER BY viewed DESC LIMIT 10")
     List<Map<String,Object>> fetchMostWatchedJobAdsForProfession(@Param("professionId") Long professionId);
 
-    @Query("MATCH (employer:Employer {employerId:{employerId}})-[ADVERTISE]->(job:JobAdvertisement)<-[LOOKED_AT]-() " +
+    @Query("MATCH (employer:Employer {employerId:{employerId}})-[ADVERTISE]->(job:JobAdvertisement)<-[LOOKED_AT]-(u:User) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS viewed " +
            "ORDER BY viewed DESC LIMIT 10")
     List<Map<String,Object>> fetchMostWatchedJobAdsByEmployer(@Param("employerId") Long employerId);
