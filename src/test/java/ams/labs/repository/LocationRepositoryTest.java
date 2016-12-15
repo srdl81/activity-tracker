@@ -35,7 +35,7 @@ public class LocationRepositoryTest {
 
         //Then:
         assertNotNull(result);
-        assertEquals(result, result);
+        assertEquals(location, result);
     }
 
 }

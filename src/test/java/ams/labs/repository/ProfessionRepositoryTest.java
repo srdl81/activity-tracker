@@ -34,7 +34,7 @@ public class ProfessionRepositoryTest {
 
         //Then:
         assertNotNull(result);
-        assertEquals(result, result);
+        assertEquals(profession, result);
     }
 
 }
