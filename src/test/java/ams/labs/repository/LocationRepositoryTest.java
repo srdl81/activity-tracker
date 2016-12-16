@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
@@ -34,8 +33,9 @@ public class LocationRepositoryTest {
         Location result = repository.findByLocationId(STOCKHOLM_LOCATION_ID);
 
         //Then:
-        assertNotNull(result);
-        assertEquals(location, result);
+        assertThat(result).isNotNull();
+        assertThat(result.getLocationId()).isEqualTo(STOCKHOLM_LOCATION_ID);
+        assertThat(result.getName()).isEqualTo(STOCKHOLM);
     }
 
 }

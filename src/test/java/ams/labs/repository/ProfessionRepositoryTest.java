@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
@@ -33,8 +33,9 @@ public class ProfessionRepositoryTest {
         Profession result = repository.findByProfessionId(PROFESSION_ID);
 
         //Then:
-        assertNotNull(result);
-        assertEquals(profession, result);
+        assertThat(result).isNotNull();
+        assertThat(result.getProfessionId()).isEqualTo(PROFESSION_ID);
+        assertThat(result.getName()).isEqualTo(SYSTEMUTVECKLARE);
     }
 
 }

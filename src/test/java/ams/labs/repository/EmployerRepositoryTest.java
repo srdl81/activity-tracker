@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
@@ -37,8 +37,10 @@ public class EmployerRepositoryTest {
         Employer result = repository.findByEmployerId(AMS_EMPLOYER_ID);
 
         //Then:
-        assertNotNull(result);
-        assertEquals(employer, result);
+        assertThat(result).isNotNull();
+        assertThat(employer.getEmployerId()).isEqualTo(AMS_EMPLOYER_ID);
+        assertThat(employer.getName()).isEqualTo(AMS_NAME);
+        assertThat(employer.getRegistrationNumber()).isEqualTo(AMS_REG_NR);
     }
 
 }

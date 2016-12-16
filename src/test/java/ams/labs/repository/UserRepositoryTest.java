@@ -10,13 +10,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
 public class UserRepositoryTest {
 
+    private static final Long JOB_ADVERTISEMENT_ID = new Long(1234567);
     @Autowired
     private UserRepository repository;
 
@@ -33,8 +34,8 @@ public class UserRepositoryTest {
         User result = repository.findByUserId(USER_ID);
 
         //Then:
-        assertNotNull(result);
-        assertEquals(result, result);
+        assertThat(result).isNotNull();
+        assertThat(result.getUserId()).isEqualTo(USER_ID);
     }
 
 
@@ -46,19 +47,18 @@ public class UserRepositoryTest {
         user.setUserId(USER_ID);
 
         JobAdvertisement jobAdvertisement = new JobAdvertisement();
-        jobAdvertisement.setJobAdvertisementId(new Long(1234567));
+        jobAdvertisement.setJobAdvertisementId(JOB_ADVERTISEMENT_ID);
 
         user.lookedAt(jobAdvertisement);
         repository.save(user);
-        
+
         //When:
         User result = repository.findByUserId(USER_ID);
 
         //Then:
-        assertNotNull(result);
-        assertEquals(user, result);
-        assertEquals(jobAdvertisement, result.getJobAdvertisements().get(0));
-
+        assertThat(result).isNotNull();
+        assertThat(result.getUserId()).isEqualTo(USER_ID);
+        assertThat(result.getJobAdvertisements().get(0).getJobAdvertisementId()).isEqualTo(JOB_ADVERTISEMENT_ID);
     }
 
 }
