@@ -11,11 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
@@ -150,8 +148,15 @@ public class JobAdvertisementRepositoryTest {
         JobAdvertisement result = repository.findByJobAdvertisementId(JOB_ADVERTISEMENT_ID);
 
         //Then:
-        assertNotNull(result);
-        assertEquals(jobAd, result);
+        assertThat(result).isNotNull();
+        assertThat(result.getJobAdvertisementId()).isEqualTo(JOB_ADVERTISEMENT_ID);
+
+        assertThat(result.getLocation().getLocationId()).isEqualTo(LOCATION_ID_STOCKHOLM);
+        assertThat(result.getLocation().getName()).isEqualTo(STOCKHOLM);
+
+        assertThat(result.getProfession().getProfessionId()).isEqualTo(PROFESSION_ID_SYSTEMUTVECKLARE);
+        assertThat(result.getProfession().getName()).isEqualTo(SYSTEMUTVECKLARE);
+
     }
 
     @Test
@@ -165,15 +170,25 @@ public class JobAdvertisementRepositoryTest {
         JobAdsResult thirdMostWatched = jobIds.get(2);
 
         //Then:
-        assertTrue(checkOrderdByViews(mostWatched, secondMostWatched, thirdMostWatched));
+        assertThat(mostWatched.getViews())
+                .isGreaterThan(secondMostWatched.getViews())
+                .isGreaterThan(thirdMostWatched.getViews());
 
-        assertEquals(4, mostWatched.getViews().intValue());
-        assertEquals(2, secondMostWatched.getViews().intValue());
-        assertEquals(1, thirdMostWatched.getViews().intValue());
+        assertThat(secondMostWatched.getViews())
+                .isGreaterThan(thirdMostWatched.getViews())
+                .isLessThan(mostWatched.getViews());
 
-        assertEquals(jobAd.getJobAdvertisementId(), mostWatched.getJobAdvertisementId());
-        assertEquals(jobAd2.getJobAdvertisementId(), secondMostWatched.getJobAdvertisementId());
-        assertEquals(jobAd3.getJobAdvertisementId(), thirdMostWatched.getJobAdvertisementId());
+        assertThat(thirdMostWatched.getViews())
+                .isLessThan(secondMostWatched.getViews())
+                .isLessThan(mostWatched.getViews());
+
+        assertThat(4).isEqualTo(mostWatched.getViews().intValue());
+        assertThat(2).isEqualTo(secondMostWatched.getViews().intValue());
+        assertThat(1).isEqualTo(thirdMostWatched.getViews().intValue());
+
+        assertThat(jobAd.getJobAdvertisementId()).isEqualTo(mostWatched.getJobAdvertisementId());
+        assertThat(jobAd2.getJobAdvertisementId()).isEqualTo(secondMostWatched.getJobAdvertisementId());
+        assertThat(jobAd3.getJobAdvertisementId()).isEqualTo(thirdMostWatched.getJobAdvertisementId());
     }
 
     @Test
@@ -183,14 +198,14 @@ public class JobAdvertisementRepositoryTest {
         List<JobAdsResult> result = repository.fetchMostWatchedJobAdsForLocation(LOCATION_ID_STOCKHOLM);
 
         //Then:
-        assertEquals(2, result.size());
-        assertTrue(result.get(0).getViews() > result.get(1).getViews());
+        assertThat(2).isEqualTo(result.size());
+        assertThat(result.get(0).getViews()).isGreaterThan(result.get(1).getViews());
 
-        assertEquals(4, result.get(0).getViews().intValue());
-        assertEquals(2, result.get(1).getViews().intValue());
+        assertThat(4).isEqualTo(result.get(0).getViews().intValue());
+        assertThat(2).isEqualTo(result.get(1).getViews().intValue());
 
-        assertEquals(jobAd.getJobAdvertisementId(), result.get(0).getJobAdvertisementId());
-        assertEquals(jobAd2.getJobAdvertisementId(), result.get(1).getJobAdvertisementId());
+        assertThat(jobAd.getJobAdvertisementId()).isEqualTo(result.get(0).getJobAdvertisementId());
+        assertThat(jobAd2.getJobAdvertisementId()).isEqualTo(result.get(1).getJobAdvertisementId());
     }
 
     @Test
@@ -200,14 +215,14 @@ public class JobAdvertisementRepositoryTest {
         List<JobAdsResult> result = repository.fetchMostWatchedJobAdsForProfession(PROFESSION_ID_SYSTEMUTVECKLARE);
 
         //Then:
-        assertEquals(2, result.size());
-        assertTrue(result.get(0).getViews() > result.get(1).getViews());
+        assertThat(2).isEqualTo(result.size());
+        assertThat(result.get(0).getViews()).isGreaterThan(result.get(1).getViews());
 
-        assertEquals(4, result.get(0).getViews().intValue());
-        assertEquals(2, result.get(1).getViews().intValue());
+        assertThat(4).isEqualTo(result.get(0).getViews().intValue());
+        assertThat(2).isEqualTo(result.get(1).getViews().intValue());
 
-        assertEquals(jobAd.getJobAdvertisementId(), result.get(0).getJobAdvertisementId());
-        assertEquals(jobAd2.getJobAdvertisementId(), result.get(1).getJobAdvertisementId());
+        assertThat(jobAd.getJobAdvertisementId()).isEqualTo(result.get(0).getJobAdvertisementId());
+        assertThat(jobAd2.getJobAdvertisementId()).isEqualTo(result.get(1).getJobAdvertisementId());
 
     }
 
@@ -222,21 +237,26 @@ public class JobAdvertisementRepositoryTest {
         JobAdsResult thirdMostWatched = result.get(2);
 
         //Then:
-        assertTrue(checkOrderdByViews(mostWatched, secondMostWatched, thirdMostWatched));
+        assertThat(mostWatched.getViews())
+                .isGreaterThan(secondMostWatched.getViews())
+                .isGreaterThan(thirdMostWatched.getViews());
 
-        assertEquals(4, mostWatched.getViews().intValue());
-        assertEquals(2, secondMostWatched.getViews().intValue());
-        assertEquals(1, thirdMostWatched.getViews().intValue());
+        assertThat(secondMostWatched.getViews())
+                .isGreaterThan(thirdMostWatched.getViews())
+                .isLessThan(mostWatched.getViews());
 
-        assertEquals(jobAd.getJobAdvertisementId(), mostWatched.getJobAdvertisementId());
-        assertEquals(jobAd2.getJobAdvertisementId(), secondMostWatched.getJobAdvertisementId());
-        assertEquals(jobAd3.getJobAdvertisementId(), thirdMostWatched.getJobAdvertisementId());
+        assertThat(thirdMostWatched.getViews())
+                .isLessThan(secondMostWatched.getViews())
+                .isLessThan(mostWatched.getViews());
 
-    }
+        assertThat(4).isEqualTo(mostWatched.getViews().intValue());
+        assertThat(2).isEqualTo(secondMostWatched.getViews().intValue());
+        assertThat(1).isEqualTo(thirdMostWatched.getViews().intValue());
 
-    private boolean checkOrderdByViews(JobAdsResult mostWatched, JobAdsResult secondMostWatched, JobAdsResult thirdMostWatched) {
-        return (mostWatched.getViews() > secondMostWatched.getViews()) &&
-                (mostWatched.getViews() > thirdMostWatched.getViews()) && secondMostWatched.getViews() > thirdMostWatched.getViews();
+        assertThat(jobAd.getJobAdvertisementId()).isEqualTo(mostWatched.getJobAdvertisementId());
+        assertThat(jobAd2.getJobAdvertisementId()).isEqualTo(secondMostWatched.getJobAdvertisementId());
+        assertThat(jobAd3.getJobAdvertisementId()).isEqualTo(thirdMostWatched.getJobAdvertisementId());
+
     }
 
 }
