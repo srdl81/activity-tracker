@@ -1,6 +1,7 @@
 package ams.labs.service;
 
 
+import ams.labs.entity.JobAdsResult;
 import ams.labs.entity.JobAdvertisement;
 import ams.labs.entity.Location;
 import ams.labs.dto.MatchResultDTO;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -43,19 +43,19 @@ public class JobAdvertisementService {
         return Lists.newArrayList(jobsIterable);
     }
 
-    public List<Map<String, Object>> fetchMostWatchedJobAdvertisements() {
+    public  List<JobAdsResult> fetchMostWatchedJobAdvertisements() {
         return repository.fetchMostWatchedJobAdvertisements();
     }
 
-    public List<Map<String, Object>> fetchMostWatchedJobAdsByForProfession(Long professionId) {
+    public List<JobAdsResult> fetchMostWatchedJobAdsByForProfession(Long professionId) {
         return repository.fetchMostWatchedJobAdsForProfession(professionId);
     }
 
-    public List<Map<String, Object>> fetchMostWatchedJobAdsForLocation(Long locationId) {
+    public List<JobAdsResult> fetchMostWatchedJobAdsForLocation(Long locationId) {
         return repository.fetchMostWatchedJobAdsForLocation(locationId);
     }
 
-    public List<Map<String, Object>> fetchMostWatchedJobAdsByEmployer(Long employerId) {
+    public List<JobAdsResult> fetchMostWatchedJobAdsByEmployer(Long employerId) {
         return repository.fetchMostWatchedJobAdsByEmployer(employerId);
     }
 
