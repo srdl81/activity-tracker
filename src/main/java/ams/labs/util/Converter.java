@@ -12,7 +12,7 @@ public class Converter {
 
     public static Long convertToLong(String value) {
         try {
-            return new Long(value);
+            return Long.valueOf(value);
         } catch (Exception e) {
             logger.error("Could not convert string='%s' to Long");
             throw new InvalidFormatException(String.format("Could not convert string='%s' to Long", value));
