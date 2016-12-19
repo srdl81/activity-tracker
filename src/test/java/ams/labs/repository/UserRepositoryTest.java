@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 @ActiveProfiles(profiles = "test")
 public class UserRepositoryTest {
 
-    private static final Long JOB_ADVERTISEMENT_ID = new Long(1234567);
+    private static final String JOB_ADVERTISEMENT_ID = "6968822";
     @Autowired
     private UserRepository repository;
 

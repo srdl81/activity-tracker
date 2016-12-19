@@ -20,9 +20,9 @@ import static org.assertj.core.api.Assertions.*;
 @ActiveProfiles(profiles = "test")
 public class JobAdvertisementRepositoryTest {
 
-    private static final Long JOB_ADVERTISEMENT_ID = new Long(1000001);
-    private static final Long JOB_ADVERTISEMENT_ID_2 = new Long(1000002);
-    private static final Long JOB_ADVERTISEMENT_ID_3 = new Long(1000003);
+    private static final String JOB_ADVERTISEMENT_ID = "6968821";
+    private static final String JOB_ADVERTISEMENT_ID_2 = "6968822";
+    private static final String JOB_ADVERTISEMENT_ID_3 = "6968823";
     private static final String SYSTEMUTVECKLARE = "Systemutvecklare";
     private static final String LOCATION_ID_STOCKHOLM = "0180";
     private static final String LOCATION_ID_UPPSALA = "0181";

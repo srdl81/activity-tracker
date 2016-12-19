@@ -11,7 +11,7 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "jobAdvertisements", path = "jobAdvertisements")
 public interface JobAdvertisementRepository extends GraphRepository<JobAdvertisement> {
-    JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") Long jobAdvertisementId);
+    JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") String jobAdvertisementId);
 
     @Query("MATCH (job:JobAdvertisement)<-[:LOOKED_AT]-(u:User) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS views " +

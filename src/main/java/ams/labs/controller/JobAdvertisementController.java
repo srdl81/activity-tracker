@@ -32,7 +32,7 @@ public class JobAdvertisementController {
 
     @ApiOperation(value = "Finds by title", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/jobs/id/{id}", method = RequestMethod.GET)
-    public JobAdvertisement findByJobAdvertisementId(@PathVariable("id") Long id) {
+    public JobAdvertisement findByJobAdvertisementId(@PathVariable("id") String id) {
 
         JobAdvertisement jobAdvertisement = service.findByJobAdvertisementId(id);
         return jobAdvertisement;
@@ -40,7 +40,7 @@ public class JobAdvertisementController {
 
     @ApiOperation(value = "save", nickname = "save", produces = "application/json")
     @RequestMapping(value = "/jobs/save/{jobAdvertisementId}/location/{location}", method = RequestMethod.GET)
-    public JobAdvertisement save(@PathVariable("jobAdvertisementId") Long jobAdvertisementId, @PathVariable("location") String location) {
+    public JobAdvertisement save(@PathVariable("jobAdvertisementId") String jobAdvertisementId, @PathVariable("location") String location) {
 
         JobAdvertisement job = service.findByJobAdvertisementId(jobAdvertisementId);
         if (job == null) {

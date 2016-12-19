@@ -5,8 +5,8 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 @QueryResult
 public class JobAdsResult {
 
-    Long jobAdvertisementId;
-    Integer views;
+    private String jobAdvertisementId;
+    private Integer views;
 
     public Integer getViews() {
         return views;
@@ -16,11 +16,11 @@ public class JobAdsResult {
         this.views = views;
     }
 
-    public Long getJobAdvertisementId() {
+    public String getJobAdvertisementId() {
         return jobAdvertisementId;
     }
 
-    public void setJobAdvertisementId(Long jobAdvertisementId) {
+    public void setJobAdvertisementId(String jobAdvertisementId) {
         this.jobAdvertisementId = jobAdvertisementId;
     }
 }

@@ -36,7 +36,7 @@ public class JobAdvertisementService {
         repository.deleteAll();
     }
 
-    public JobAdvertisement findByJobAdvertisementId(Long jobAdvertisementId) {
+    public JobAdvertisement findByJobAdvertisementId(String jobAdvertisementId) {
         return repository.findByJobAdvertisementId(jobAdvertisementId);
     }
 
@@ -64,8 +64,7 @@ public class JobAdvertisementService {
 
     public JobAdvertisement fetchJobAdvertisement(MatchResultDTO matchResultDTO, Profession profession, Location location) {
 
-        Long id = convertToLong(matchResultDTO.getId());
-
+        String id = matchResultDTO.getId();
         JobAdvertisement job = repository.findByJobAdvertisementId(id);
         if (job == null) {
             job = new JobAdvertisement();
