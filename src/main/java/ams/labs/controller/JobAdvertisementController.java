@@ -45,7 +45,7 @@ public class JobAdvertisementController {
         JobAdvertisement job = service.findByJobAdvertisementId(jobAdvertisementId);
         if (job == null) {
             job = new JobAdvertisement();
-            job.setJobAdvertisementId(new Long(jobAdvertisementId));
+            job.setJobAdvertisementId(jobAdvertisementId);
             job.setLocation(new Location(location));
         }
 

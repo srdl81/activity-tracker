@@ -26,7 +26,7 @@ public class LocationService {
         repository.deleteAll();
     }
 
-    public Location findByLocationId(Long locationId) {
+    public Location findByLocationId(String locationId) {
         return repository.findByLocationId(locationId);
     }
 
@@ -39,12 +39,12 @@ public class LocationService {
 
     public Location fetchLocation(ErbjudenArbetsplats erbjudenArbetsplats) {
 
-        Long locationId = Converter.convertToLong(erbjudenArbetsplats.getKommun());
+        String id = erbjudenArbetsplats.getKommun().getId();
 
-        Location location = repository.findByLocationId(locationId);
+        Location location = repository.findByLocationId(id);
         if (location == null) {
             location = new Location();
-            location.setLocationId(locationId);
+            location.setLocationId(id);
             location.setName(erbjudenArbetsplats.getKommun().getNamn());
             repository.save(location);
         }

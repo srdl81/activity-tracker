@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 public class ProfessionRepositoryTest {
 
     private static final String SYSTEMUTVECKLARE = "Systemutvecklare";
-    private static final Long PROFESSION_ID = new Long(2255);
+    private static final String PROFESSION_ID = "2255";
     @Autowired
     private ProfessionRepository repository;
 

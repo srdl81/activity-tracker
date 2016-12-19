@@ -28,7 +28,7 @@ public class StatisticController {
 
     @ApiOperation(value = "Most viewed Job Ads for by specific location", nickname = "Job Ad for a location", produces = "application/json")
     @RequestMapping(value = "/statistics/mostviews/location/{locationId}", method = RequestMethod.GET)
-    public @ResponseBody List<JobAdsResult> getTop10ForLocation(@PathVariable("locationId") Long locationId) {
+    public @ResponseBody List<JobAdsResult> getTop10ForLocation(@PathVariable("locationId") String locationId) {
         List<JobAdsResult> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsForLocation(locationId);
 
         return mostWatcheds;
@@ -36,7 +36,7 @@ public class StatisticController {
 
     @ApiOperation(value = "Most viewed Job Ads by specific profession", nickname = "Job Ad for a profession", produces = "application/json")
     @RequestMapping(value = "/statistics/mostviews/profession/{professionId}", method = RequestMethod.GET)
-    public @ResponseBody List<JobAdsResult> getTop10ForYrkesNamn(@PathVariable("professionId") Long professionId) {
+    public @ResponseBody List<JobAdsResult> getTop10ForYrkesNamn(@PathVariable("professionId") String professionId) {
         List<JobAdsResult> mostWatcheds = jobAdvertisementService.fetchMostWatchedJobAdsByForProfession(professionId);
 
         return mostWatcheds;

@@ -11,14 +11,14 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class Profession {
 
     @GraphId Long id;
-    private Long professionId;
+    private String professionId;
     private String name;
 
-    public Long getProfessionId() {
+    public String getProfessionId() {
         return professionId;
     }
 
-    public void setProfessionId(Long professionId) {
+    public void setProfessionId(String professionId) {
         this.professionId = professionId;
     }
 

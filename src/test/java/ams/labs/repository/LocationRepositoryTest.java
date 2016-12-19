@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LocationRepositoryTest {
 
     private static final String STOCKHOLM = "Stockholm";
-    private static final Long STOCKHOLM_LOCATION_ID = new Long("180");
+    private static final String STOCKHOLM_LOCATION_ID = "0180";
 
     @Autowired
     private LocationRepository repository;

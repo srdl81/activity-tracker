@@ -23,7 +23,7 @@ public class ProfessionService {
     @Autowired
     private ProfessionRepository repository;
 
-    public Profession findByProfessionId(Long professionId) {
+    public Profession findByProfessionId(String professionId) {
         return repository.findByProfessionId(professionId);
     }
 
@@ -42,8 +42,7 @@ public class ProfessionService {
     }
 
     public Profession fetchProfession(IdNamn params) {
-        Long professionId = Converter.convertToLong(params);
-
+        String professionId = params.getId();
         Profession profession = repository.findByProfessionId(professionId);
         if (profession == null) {
             profession = new Profession();

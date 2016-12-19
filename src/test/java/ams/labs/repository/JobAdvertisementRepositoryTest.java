@@ -24,11 +24,12 @@ public class JobAdvertisementRepositoryTest {
     private static final Long JOB_ADVERTISEMENT_ID_2 = new Long(1000002);
     private static final Long JOB_ADVERTISEMENT_ID_3 = new Long(1000003);
     private static final String SYSTEMUTVECKLARE = "Systemutvecklare";
-    private static final Long LOCATION_ID_STOCKHOLM = new Long(180);
-    private static final Long PROFESSION_ID_SYSTEMUTVECKLARE = new Long(1234);
-    private static final Long PROFESSION_ID_JURIST = new Long(4567);
+    private static final String LOCATION_ID_STOCKHOLM = "0180";
+    private static final String LOCATION_ID_UPPSALA = "0181";
+    private static final String PROFESSION_ID_SYSTEMUTVECKLARE = "1234";
+    private static final String PROFESSION_ID_JURIST = "4567";
     private static final String JURIST = "jurist";
-    private static final Long LOCATION_ID_UPPSALA = new Long(181);
+
     private static final String STOCKHOLM = "Stockholm";
     private static final String UPPSALA = "Uppsala";
     private static final Long EMPLOYER_ID = new Long(20383691);

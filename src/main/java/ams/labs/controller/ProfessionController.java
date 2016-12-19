@@ -18,7 +18,7 @@ public class ProfessionController {
 
     @ApiOperation(value = "Save Profession Entity in db", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/profession/{id}/{name}", method = RequestMethod.POST)
-    public @ResponseBody String save(@PathVariable("id") Long id, @PathVariable("name") String name) {
+    public @ResponseBody String save(@PathVariable("id") String id, @PathVariable("name") String name) {
 
         Profession profession = service.findByProfessionId(id);
         if (profession == null) {
@@ -43,7 +43,7 @@ public class ProfessionController {
 
     @ApiOperation(value = "Find by id", nickname = "Find by id", produces = "application/json")
     @RequestMapping(value = "/profession/{id}", method = RequestMethod.GET)
-    public @ResponseBody Profession findProfessionById(@PathVariable("id") Long id) {
+    public @ResponseBody Profession findProfessionById(@PathVariable("id") String id) {
         Profession profession = service.findByProfessionId(id);
         return profession;
     }

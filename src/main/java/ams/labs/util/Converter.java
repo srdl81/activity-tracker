@@ -10,15 +10,13 @@ public class Converter {
 
     final static Logger logger = LoggerFactory.getLogger(Converter.class);
 
-    public static Long convertToLong(IdNamn profession) {
-
+    public static Long convertToLong(String value) {
         try {
-            return new Long(profession.getId());
+            return new Long(value);
         } catch (Exception e) {
             logger.error("Could not convert string='%s' to Long");
-            throw new InvalidFormatException(String.format("Could not convert string='%s' to Long", profession.getId()));
+            throw new InvalidFormatException(String.format("Could not convert string='%s' to Long", value));
         }
-
     }
 
 }

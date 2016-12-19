@@ -19,7 +19,7 @@ public class LocationController {
 
     @ApiOperation(value = "Save Location Entity in db", nickname = "Find All", produces = "application/json")
     @RequestMapping(value = "/location/{id}/{name}", method = RequestMethod.POST)
-    public @ResponseBody String save(@PathVariable("id") Long id, @PathVariable("name") String name) {
+    public @ResponseBody String save(@PathVariable("id") String id, @PathVariable("name") String name) {
 
         Location location = service.findByLocationId(id);
         if (location == null) {
@@ -45,7 +45,7 @@ public class LocationController {
 
     @ApiOperation(value = "Find by id", nickname = "Find by id", produces = "application/json")
     @RequestMapping(value = "/location/{id}", method = RequestMethod.GET)
-    public @ResponseBody Location findLocationById(@PathVariable("id") Long id) {
+    public @ResponseBody Location findLocationById(@PathVariable("id") String id) {
         Location location = service.findByLocationId(id);
         return location;
     }

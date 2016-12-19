@@ -7,6 +7,7 @@ import ams.labs.entity.Location;
 import ams.labs.dto.MatchResultDTO;
 import ams.labs.entity.Profession;
 import ams.labs.repository.JobAdvertisementRepository;
+import ams.labs.util.Converter;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static ams.labs.util.Converter.*;
 
 @Service
 @Transactional
@@ -47,11 +50,11 @@ public class JobAdvertisementService {
         return repository.fetchMostWatchedJobAdvertisements();
     }
 
-    public List<JobAdsResult> fetchMostWatchedJobAdsByForProfession(Long professionId) {
+    public List<JobAdsResult> fetchMostWatchedJobAdsByForProfession(String professionId) {
         return repository.fetchMostWatchedJobAdsForProfession(professionId);
     }
 
-    public List<JobAdsResult> fetchMostWatchedJobAdsForLocation(Long locationId) {
+    public List<JobAdsResult> fetchMostWatchedJobAdsForLocation(String locationId) {
         return repository.fetchMostWatchedJobAdsForLocation(locationId);
     }
 
@@ -61,8 +64,7 @@ public class JobAdvertisementService {
 
     public JobAdvertisement fetchJobAdvertisement(MatchResultDTO matchResultDTO, Profession profession, Location location) {
 
-        //TODO:handle this in Converter.convertToLong()
-        Long id = new Long(matchResultDTO.getId());
+        Long id = convertToLong(matchResultDTO.getId());
 
         JobAdvertisement job = repository.findByJobAdvertisementId(id);
         if (job == null) {

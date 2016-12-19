@@ -5,5 +5,5 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
 
 public interface LocationRepository extends GraphRepository<Location> {
-    Location findByLocationId(Long locationId);
+    Location findByLocationId(String locationId);
 }
