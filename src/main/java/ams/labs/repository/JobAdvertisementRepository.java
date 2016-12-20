@@ -13,22 +13,22 @@ import java.util.List;
 public interface JobAdvertisementRepository extends GraphRepository<JobAdvertisement> {
     JobAdvertisement findByJobAdvertisementId(@Param("jobAdvertisementId") String jobAdvertisementId);
 
-    @Query("MATCH (job:JobAdvertisement)<-[:LOOKED_AT]-(u:User) " +
+    @Query("MATCH (job:JobAdvertisement)<-[:WATCHED]-(u:User) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS views " +
            "ORDER BY views DESC LIMIT 10")
     List<JobAdsResult> fetchMostWatchedJobAdvertisements();
 
-    @Query("MATCH (u:User)-[LOOKED_AT]->(job:JobAdvertisement)-[LOCATED_IN]->(Location {locationId: {locationId} }) " +
+    @Query("MATCH (u:User)-[WATCHED]->(job:JobAdvertisement)-[LOCATED_IN]->(Location {locationId: {locationId} }) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS views " +
            "ORDER BY views DESC LIMIT 10")
     List<JobAdsResult> fetchMostWatchedJobAdsForLocation(@Param("locationId") String locationId);
 
-    @Query("MATCH (u:User)-[LOOKED_AT]->(job:JobAdvertisement)-[HAS_A]->(profession:Profession {professionId:{professionId}}) " +
+    @Query("MATCH (u:User)-[WATCHED]->(job:JobAdvertisement)-[HAS_A]->(profession:Profession {professionId:{professionId}}) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS views " +
            "ORDER BY views DESC LIMIT 10")
     List<JobAdsResult> fetchMostWatchedJobAdsForProfession(@Param("professionId") String professionId);
 
-    @Query("MATCH (employer:Employer {employerId:{employerId}})-[ADVERTISE]->(job:JobAdvertisement)<-[LOOKED_AT]-(u:User) " +
+    @Query("MATCH (employer:Employer {employerId:{employerId}})-[ADVERTISE]->(job:JobAdvertisement)<-[WATCHED]-(u:User) " +
            "RETURN job.jobAdvertisementId AS jobAdvertisementId, count(*) AS views " +
            "ORDER BY views DESC LIMIT 10")
     List<JobAdsResult> fetchMostWatchedJobAdsByEmployer(@Param("employerId") Long employerId);

@@ -2,6 +2,7 @@ package ams.labs.repository;
 
 import ams.labs.configuration.Neo4jTestConfiguration;
 import ams.labs.entity.*;
+import ams.labs.util.GeneralUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static ams.labs.util.GeneralUtil.*;
+import static ams.labs.util.GeneralUtil.getCurrentDate;
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -62,6 +65,9 @@ public class JobAdvertisementRepositoryTest {
     @Autowired
     private EmployerRepository employerRepository;
 
+    @Autowired
+    private WatchedRepository watchedRepository;
+
 
     @Before
     public void setUp() throws Exception {
@@ -100,27 +106,14 @@ public class JobAdvertisementRepositoryTest {
         jobAd3.setLocation(uppsala);
         repository.save(jobAd3);
 
-        User user = new User();
-        user.lookedAt(jobAd);
-        userRepository.save(user);
+        watchedRepository.save(new Watched(new User(), jobAd, getCurrentDate()));
+        watchedRepository.save(new Watched(new User(), jobAd2, getCurrentDate()));
 
-        User user2 = new User();
-        user2.lookedAt(jobAd2);
-        userRepository.save(user2);
-
-        User user3 = new User();
-        user3.lookedAt(jobAd);
-        user3.lookedAt(jobAd2);
-        user3.lookedAt(jobAd3);
-        userRepository.save(user3);
-
-        User user4 = new User();
-        user4.lookedAt(jobAd);
-        userRepository.save(user4);
-
-        User user5 = new User();
-        user5.lookedAt(jobAd);
-        userRepository.save(user5);
+        watchedRepository.save(new Watched(new User(), jobAd, getCurrentDate()));
+        watchedRepository.save(new Watched(new User(), jobAd2, getCurrentDate()));
+        watchedRepository.save(new Watched(new User(), jobAd3, getCurrentDate()));
+        watchedRepository.save(new Watched(new User(), jobAd, getCurrentDate()));
+        watchedRepository.save(new Watched(new User(), jobAd, getCurrentDate()));
 
         Employer employer = new Employer();
         employer.setEmployerId(EMPLOYER_ID);

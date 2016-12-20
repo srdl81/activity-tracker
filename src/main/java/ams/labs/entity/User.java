@@ -15,16 +15,8 @@ public class User {
     @GraphId Long id;
     private Long userId;
 
-    @Relationship(type = "LOOKED_AT")
-    private List<JobAdvertisement> jobAdvertisements;
-
-    public void lookedAt(JobAdvertisement jobAdvertisement) {
-        if (jobAdvertisements == null) {
-            jobAdvertisements = new ArrayList<>();
-        }
-
-        jobAdvertisements.add(jobAdvertisement);
-    }
+    @Relationship(type = "WATCHED")
+    private List<Watched> watched = new ArrayList<>();
 
     public User() { }
 
@@ -36,12 +28,12 @@ public class User {
         this.userId = userId;
     }
 
-    public List<JobAdvertisement> getJobAdvertisements() {
-        return jobAdvertisements;
+    public List<Watched> getWatched() {
+        return watched;
     }
 
-    public void setJobAdvertisements(List<JobAdvertisement> jobAdvertisements) {
-        this.jobAdvertisements = jobAdvertisements;
+    public void setWatched(List<Watched> watched) {
+        this.watched = watched;
     }
 
 }
