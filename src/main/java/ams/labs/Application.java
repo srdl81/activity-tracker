@@ -35,7 +35,7 @@ public class Application extends Neo4jConfiguration {
 
     @Override
     public SessionFactory getSessionFactory() {
-        return new SessionFactory(getConfiguration(), "ams.labs.entity");
+        return new SessionFactory(getConfiguration(), "ams.labs.entity", "BOOT-INF.classes.ams.labs.entity");
     }
 
     @Bean
