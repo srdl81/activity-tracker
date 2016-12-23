@@ -22,7 +22,7 @@ public class Application extends Neo4jConfiguration {
         SpringApplication.run(Application.class, args);
     }
 
-    public static final String URL = System.getenv("NEO4J_URL") != null ? System.getenv("NEO4J_URL") : "http://neo4j:elvis@localhost:7474";
+    public static final String URL = System.getenv("NEO4J_URL") != null ? System.getenv("NEO4J_URL") : "http://neo4j:amsams@neo4j:7474";
 
     @Bean
     public org.neo4j.ogm.config.Configuration getConfiguration() {
