@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class LogActivityController {
 
     private final static Logger log = LoggerFactory.getLogger(LogActivityController.class);
-    private static final String URL = "https://www.arbetsformedlingen.se/rest/matchning/rest/matchning/v1/matchandeRekryteringsbehov/";
+    public static final String URL = "http://pilot.arbetsformedlingen.se:80/pbv3api/rest/matchning/v1/matchandeRekryteringsbehov/";
 
     @Autowired
     private ActivityService activityService;

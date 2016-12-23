@@ -1,5 +1,6 @@
 package ams.labs.integration;
 
+import ams.labs.controller.LogActivityController;
 import ams.labs.dto.MatchResultDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,12 +34,10 @@ public class MatchServiceIntegrationTest {
     @Test
     public void checkMatchServiceData() throws IOException {
         //Given:
-        String URL = "https://www.arbetsformedlingen.se/rest/matchning/rest/matchning/v1/matchandeRekryteringsbehov/";
         String id = "6968822";
 
        //When:
-        ResponseEntity<MatchResultDTO> responseEntity = restTemplate.postForEntity(URL + id, getMultiValueMapHttpEntity(), MatchResultDTO.class);
-
+        ResponseEntity<MatchResultDTO> responseEntity = restTemplate.postForEntity(LogActivityController.URL + id, getMultiValueMapHttpEntity(), MatchResultDTO.class);
 
        //Then:
         assertThat(responseEntity.getStatusCode())
