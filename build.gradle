@@ -2,8 +2,8 @@ buildscript {
 	ext {
 		springBootVersion = '1.4.2.RELEASE'
         swaggerVersion = '2.6.0'
-        springDataNeo4JVersion = '4.1.3.RELEASE'
-        neo4jVersion = '3.0.0'
+        springDataNeo4JVersion = '4.1.6.RELEASE'
+        neo4jVersion = '3.0.7'
         dockerVersion = '1.2'
 	}
 	repositories {
