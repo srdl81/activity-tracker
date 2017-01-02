@@ -32,7 +32,7 @@ public class LogActivityController {
     private RestTemplate restTemplate;
 
     @ApiOperation(value = "Log User Activity", nickname = "Log Activity", produces = "application/json")
-    @RequestMapping(value = "/user/track/activity", method = RequestMethod.POST)
+    @RequestMapping(value = "/log/activity", method = RequestMethod.POST)
     public JobAdvertisement logUserActivity(@Valid @RequestBody MatchResultDTO matchResultDTO,
                                             @RequestParam(value = "user", defaultValue = "1001") Long user) {
 
@@ -44,7 +44,7 @@ public class LogActivityController {
     /*
         TEST METHOD
     */
-    @ApiOperation(value = "Generate activity FOR TEST", nickname = "Log Activity", produces = "application/json")
+    @ApiOperation(value = " TEST Generate activity FOR TEST", nickname = " TEST Log Activity", produces = "application/json")
     @RequestMapping(value = "/user/activity", method = RequestMethod.POST)
     public String logUserActivity(@RequestParam("userId") Long userId, @RequestParam("jobIds") String jobIds) {
 

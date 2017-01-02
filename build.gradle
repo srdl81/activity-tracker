@@ -24,7 +24,7 @@ apply plugin: 'org.springframework.boot'
 //group = 'amslabs'
 
 jar {
-	baseName = 'track-user-docker'
+	baseName = 'activity-tracker-docker'
 	version = '0.0.1-SNAPSHOT'
 }
 
