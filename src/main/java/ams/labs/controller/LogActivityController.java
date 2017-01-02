@@ -41,8 +41,8 @@ public class LogActivityController {
     }
 
     @ApiOperation(value = "Generate activity", nickname = "Log Activity", produces = "application/json")
-    @RequestMapping(value = "/user/{userId}/job/{jobIds}", method = RequestMethod.POST)
-    public String logUserActivity(@PathVariable("userId") Long userId, @PathVariable("jobIds") String jobIds) {
+    @RequestMapping(value = "/user/activity", method = RequestMethod.POST)
+    public String logUserActivity(@RequestParam("userId") Long userId, @RequestParam("jobIds") String jobIds) {
 
         for (String id : Arrays.asList(jobIds.split(","))) {
             ResponseEntity<MatchResultDTO> responseEntity = restTemplate.postForEntity(URL + id, getMultiValueMapHttpEntity(), MatchResultDTO.class);
