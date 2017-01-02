@@ -32,15 +32,19 @@ public class LogActivityController {
     private RestTemplate restTemplate;
 
     @ApiOperation(value = "Log User Activity", nickname = "Log Activity", produces = "application/json")
-    @RequestMapping(value = "/user/{userId}/activity", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/track/activity", method = RequestMethod.POST)
     public JobAdvertisement logUserActivity(@Valid @RequestBody MatchResultDTO matchResultDTO,
-                                            @PathVariable("userId") Long userId) {
+                                            @RequestParam(value = "user", defaultValue = "1001") Long user) {
 
-        log.info(String.format("logging activity for DTO '%s'", matchResultDTO));
-        return logActivity(userId, matchResultDTO);
+        log.info(String.format("logging activity for user '%s' with DTO '%s'", user, matchResultDTO));
+        return logActivity(user, matchResultDTO);
     }
 
-    @ApiOperation(value = "Generate activity", nickname = "Log Activity", produces = "application/json")
+
+    /*
+        TEST METHOD
+    */
+    @ApiOperation(value = "Generate activity FOR TEST", nickname = "Log Activity", produces = "application/json")
     @RequestMapping(value = "/user/activity", method = RequestMethod.POST)
     public String logUserActivity(@RequestParam("userId") Long userId, @RequestParam("jobIds") String jobIds) {
 
