@@ -12,10 +12,10 @@ public class JobAdvertisement {
     @GraphId Long id;
     private String jobAdvertisementId;
 
-    @Relationship(type = "LOCATED_IN")
+    @Relationship(type = "LOCATED_IN", direction = Relationship.OUTGOING)
     private Location location;
 
-    @Relationship(type = "HAS_A")
+    @Relationship(type = "HAS_A", direction = Relationship.OUTGOING)
     private Profession profession;
 
     public JobAdvertisement() { }

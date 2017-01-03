@@ -15,7 +15,7 @@ public class User {
     @GraphId Long id;
     private Long userId;
 
-    @Relationship(type = "WATCHED_AT")
+    @Relationship(type = "WATCHED_AT", direction = Relationship.OUTGOING)
     private List<Watched> watched = new ArrayList<>();
 
     public User() { }

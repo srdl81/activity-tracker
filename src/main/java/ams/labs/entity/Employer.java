@@ -20,7 +20,7 @@ public class Employer {
     private Long registrationNumber;
     private String name;
 
-    @Relationship(type = "ADVERTISE")
+    @Relationship(type = "ADVERTISE", direction = Relationship.OUTGOING)
     List<JobAdvertisement> jobAdvertisements;
 
     public void advertise(JobAdvertisement jobAdvertisement) {
