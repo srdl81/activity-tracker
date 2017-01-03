@@ -18,7 +18,7 @@ public class MatchResultDTO {
     private String organisationsnummer;
 
     @NotNull
-    @Size(min=1, max=30)
+    @Size(min=1, max=50)
     private String arbetsgivarenamn;
 
     @NotNull
