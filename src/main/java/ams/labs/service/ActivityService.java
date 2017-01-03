@@ -36,8 +36,10 @@ public class ActivityService {
 
     public JobAdvertisement logActivity(MatchResultDTO matchResultDTO, Long userId) {
 
-        JobAdvertisement job = jobAdvertisementService.
-                fetchJobAdvertisement(matchResultDTO, getProfession(matchResultDTO), getLocation(matchResultDTO));
+        Profession profession =  professionService.fetchProfession(matchResultDTO.getYrkesroll());
+        Location location = locationService.fetchLocation(matchResultDTO.getErbjudenArbetsplats());
+
+        JobAdvertisement job = jobAdvertisementService.fetchJobAdvertisement(matchResultDTO, profession, location);
 
         User user = userService.fetchUser(userId);
         if (user.getWatched() == null || user.getWatched().isEmpty() || hasNotWatched(user, job)) {
@@ -58,14 +60,6 @@ public class ActivityService {
         return user.getWatched().stream()
                 .anyMatch(watched -> !watched.getJobAdvertisement().getJobAdvertisementId()
                         .equalsIgnoreCase(job.getJobAdvertisementId()));
-    }
-
-    private Location getLocation(MatchResultDTO matchResultDTO) {
-        return locationService.fetchLocation(matchResultDTO.getErbjudenArbetsplats());
-    }
-
-    private Profession getProfession(MatchResultDTO matchResultDTO) {
-        return professionService.fetchProfession(matchResultDTO.getYrkesroll());
     }
 
 }
