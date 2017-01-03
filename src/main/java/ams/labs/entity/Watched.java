@@ -8,7 +8,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 
 import java.util.Date;
 
-@RelationshipEntity(type = "WATCHED")
+@RelationshipEntity(type = "WATCHED_AT")
 public class Watched {
 
     @GraphId
