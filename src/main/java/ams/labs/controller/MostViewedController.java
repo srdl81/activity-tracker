@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Api(value = "Activity Statistics", description = "View Activity Statistics")
+@Api(value = "Most Viewed Statistics", description = "View Most Viewed Activity Statistics")
 @RestController
-public class StatisticController {
+public class MostViewedController {
 
     @Autowired
     private JobAdvertisementService jobAdvertisementService;
