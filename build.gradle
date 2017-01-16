@@ -5,6 +5,7 @@ buildscript {
         springDataNeo4JVersion = '4.1.6.RELEASE'
         neo4jVersion = '3.0.7'
         dockerVersion = '1.2'
+        jacocoVersion = '0.7.5.201505241946'
 	}
 	repositories {
 		mavenCentral()
@@ -20,6 +21,8 @@ apply plugin: 'idea'
 apply plugin: 'docker'
 apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'build-dashboard'
+apply plugin: 'jacoco'
 
 //group = 'amslabs'
 
@@ -63,3 +66,16 @@ dependencies {
     testCompile group: 'org.neo4j', name: 'neo4j-ogm-test', version:'2.0.6'
 
 }
+
+jacoco {
+    toolVersion = jacocoVersion
+}
+
+jacocoTestReport {
+    reports{
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = true
+    }
+}
+test.finalizedBy jacocoTestReport
