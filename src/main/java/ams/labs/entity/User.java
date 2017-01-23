@@ -18,6 +18,9 @@ public class User {
     @Relationship(type = "WATCHED_AT", direction = Relationship.OUTGOING)
     private List<Watched> watched = new ArrayList<>();
 
+    @Relationship(type = "FAVORITE_MARKED", direction = Relationship.OUTGOING)
+    private List<Favorite> favorites = new ArrayList<>();
+
     public User() { }
 
     public Long getUserId() {
@@ -36,4 +39,11 @@ public class User {
         this.watched = watched;
     }
 
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
+    }
 }

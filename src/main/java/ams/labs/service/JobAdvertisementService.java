@@ -6,6 +6,7 @@ import ams.labs.entity.JobAdvertisement;
 import ams.labs.entity.Location;
 import ams.labs.dto.MatchResultDTO;
 import ams.labs.entity.Profession;
+import ams.labs.exception.ModelNotFoundException;
 import ams.labs.repository.JobAdvertisementRepository;
 import ams.labs.util.Converter;
 import com.google.common.collect.Lists;
@@ -62,7 +63,7 @@ public class JobAdvertisementService {
         return repository.fetchMostWatchedJobAdsByEmployer(employerId);
     }
 
-    public JobAdvertisement fetchJobAdvertisement(MatchResultDTO matchResultDTO, Profession profession, Location location) {
+    public JobAdvertisement fetchOrSaveJobAdvertisement(MatchResultDTO matchResultDTO, Profession profession, Location location) {
 
         String id = matchResultDTO.getId();
         JobAdvertisement job = repository.findByJobAdvertisementId(id);
@@ -75,5 +76,15 @@ public class JobAdvertisementService {
         }
 
         return job;
+    }
+
+    public JobAdvertisement fetchJobAdvertisement(String jobAdsId) {
+
+        JobAdvertisement jobAdvertisement = repository.findByJobAdvertisementId(jobAdsId);
+        if (jobAdvertisement == null) {
+            throw new ModelNotFoundException("Could not find JobAdvertisement with id: '%s'");
+        }
+
+        return jobAdvertisement;
     }
 }

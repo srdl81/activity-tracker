@@ -34,12 +34,12 @@ public class ActivityService {
     @Autowired
     private WatchedService watchedService;
 
-    public JobAdvertisement logActivity(MatchResultDTO matchResultDTO, Long userId) {
+    public JobAdvertisement logActivity(MatchResultDTO matchDTO, Long userId) {
 
-        Profession profession =  professionService.fetchProfession(matchResultDTO.getYrkesroll());
-        Location location = locationService.fetchLocation(matchResultDTO.getErbjudenArbetsplats());
+        Profession profession =  professionService.fetchProfession(matchDTO.getYrkesroll());
+        Location location = locationService.fetchLocation(matchDTO.getErbjudenArbetsplats());
 
-        JobAdvertisement job = jobAdvertisementService.fetchJobAdvertisement(matchResultDTO, profession, location);
+        JobAdvertisement job = jobAdvertisementService.fetchOrSaveJobAdvertisement(matchDTO, profession, location);
 
         User user = userService.fetchUser(userId);
         if (user.getWatched() == null || user.getWatched().isEmpty() || hasNotWatched(user, job)) {
@@ -49,7 +49,7 @@ public class ActivityService {
             return null;
         }
 
-        Employer employer = employerService.fetchEmployer(matchResultDTO);
+        Employer employer = employerService.fetchEmployer(matchDTO);
         employer.advertise(job);
         employerService.save(employer);
 
