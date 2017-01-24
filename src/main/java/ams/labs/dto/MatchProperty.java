@@ -1,8 +1,8 @@
 package ams.labs.dto;
 
-public class IdNamn {
-    String id;
-    String namn;
+public class MatchProperty {
+    private String id;
+    private String namn;
 
     public String getId() {
         return id;
@@ -22,7 +22,7 @@ public class IdNamn {
 
     @Override
     public String toString() {
-        return "IdNamn{" +
+        return "MatchProperty{" +
                 "id='" + id + '\'' +
                 ", namn='" + namn + '\'' +
                 '}';

@@ -1,10 +1,9 @@
 package ams.labs.service;
 
 
-import ams.labs.dto.IdNamn;
+import ams.labs.dto.MatchProperty;
 import ams.labs.entity.Profession;
 import ams.labs.repository.ProfessionRepository;
-import ams.labs.util.Converter;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +40,7 @@ public class ProfessionService {
         repository.deleteAll();
     }
 
-    public Profession fetchProfession(IdNamn params) {
+    public Profession fetchProfession(MatchProperty params) {
         String professionId = params.getId();
         Profession profession = repository.findByProfessionId(professionId);
         if (profession == null) {

@@ -3,13 +3,13 @@ package ams.labs.dto;
 
 public class ErbjudenArbetsplats {
 
-    IdNamn kommun;
+    MatchProperty kommun;
 
-    public IdNamn getKommun() {
+    public MatchProperty getKommun() {
         return kommun;
     }
 
-    public void setKommun(IdNamn kommun) {
+    public void setKommun(MatchProperty kommun) {
         this.kommun = kommun;
     }
 

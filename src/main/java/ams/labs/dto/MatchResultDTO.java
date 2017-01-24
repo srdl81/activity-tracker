@@ -22,7 +22,7 @@ public class MatchResultDTO {
     private String arbetsgivarenamn;
 
     @NotNull
-    private IdNamn yrkesroll;
+    private MatchProperty yrkesroll;
 
     @NotNull
     private ErbjudenArbetsplats erbjudenArbetsplats;
@@ -59,11 +59,11 @@ public class MatchResultDTO {
         this.arbetsgivarenamn = arbetsgivarenamn;
     }
 
-    public IdNamn getYrkesroll() {
+    public MatchProperty getYrkesroll() {
         return yrkesroll;
     }
 
-    public void setYrkesroll(IdNamn yrkesroll) {
+    public void setYrkesroll(MatchProperty yrkesroll) {
         this.yrkesroll = yrkesroll;
     }
 

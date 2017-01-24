@@ -2,7 +2,7 @@ package ams.labs.service;
 
 import ams.labs.configuration.Neo4jTestConfiguration;
 import ams.labs.dto.ErbjudenArbetsplats;
-import ams.labs.dto.IdNamn;
+import ams.labs.dto.MatchProperty;
 import ams.labs.dto.MatchResultDTO;
 import ams.labs.entity.User;
 import ams.labs.repository.UserRepository;
@@ -29,34 +29,34 @@ public class ActivityServiceTest {
     @Autowired
     private UserRepository userRepository;
 
-    private MatchResultDTO resultDTO = new MatchResultDTO();
+    private MatchResultDTO matchDTO = new MatchResultDTO();
 
 
     @Before
     public void setUp() throws Exception {
-        resultDTO.setId("6968823");
-        resultDTO.setArbetsgivareId("10820089");
-        resultDTO.setArbetsgivarenamn("Landstinget Dalarna");
-        resultDTO.setOrganisationsnummer("2321000180");
+        matchDTO.setId("6968823");
+        matchDTO.setArbetsgivareId("10820089");
+        matchDTO.setArbetsgivarenamn("Landstinget Dalarna");
+        matchDTO.setOrganisationsnummer("2321000180");
 
         ErbjudenArbetsplats erbjudenArbetsplats = new ErbjudenArbetsplats();
 
-        IdNamn kommun = new IdNamn();
+        MatchProperty kommun = new MatchProperty();
         kommun.setId("0180");
         kommun.setNamn("Stockholm");
         erbjudenArbetsplats.setKommun(kommun);
-        resultDTO.setErbjudenArbetsplats(erbjudenArbetsplats);
+        matchDTO.setErbjudenArbetsplats(erbjudenArbetsplats);
 
-        IdNamn yrkesRoll = new IdNamn();
+        MatchProperty yrkesRoll = new MatchProperty();
         yrkesRoll.setId("7296");
         yrkesRoll.setNamn("Sjuksköterska, grundutbildad");
-        resultDTO.setYrkesroll(yrkesRoll);
+        matchDTO.setYrkesroll(yrkesRoll);
 
     }
 
     @Test
     public void logActivity() throws Exception {
-        service.logActivity(resultDTO, USER_ID);
+        service.logActivity(matchDTO, USER_ID);
 
         User user = userRepository.findByUserId(USER_ID);
 
@@ -71,8 +71,8 @@ public class ActivityServiceTest {
 
     @Test
     public void logActivityAndMakeSureThatItOnlyWillPersistOne() throws Exception {
-        service.logActivity(resultDTO, USER_ID);
-        service.logActivity(resultDTO, USER_ID);
+        service.logActivity(matchDTO, USER_ID);
+        service.logActivity(matchDTO, USER_ID);
 
         User user = userRepository.findByUserId(USER_ID);
 

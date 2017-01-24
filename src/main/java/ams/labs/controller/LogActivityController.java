@@ -1,11 +1,9 @@
 package ams.labs.controller;
 
 
-import ams.labs.dto.FavoriteDTO;
 import ams.labs.dto.MatchResultDTO;
 import ams.labs.entity.JobAdvertisement;
 import ams.labs.service.ActivityService;
-import ams.labs.service.FavoriteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -29,10 +27,7 @@ public class LogActivityController {
 
     @Autowired
     private ActivityService activityService;
-
-    @Autowired
-    private FavoriteService favoriteService;
-
+    
     @Autowired
     private RestTemplate restTemplate;
 
@@ -44,29 +39,6 @@ public class LogActivityController {
         log.info(String.format("logging activity for user '%s' with DTO '%s'", user, matchResultDTO));
         return logActivity(user, matchResultDTO);
     }
-
-    @ApiOperation(value = "Log User favorite", nickname = "Log Favorite", produces = "application/json")
-    @RequestMapping(value = "/log/activity/favorite", method = RequestMethod.POST)
-    public void logFavorite(@Valid @RequestBody FavoriteDTO dto,
-                            @RequestParam(value = "user", defaultValue = "1001") Long user) {
-
-        log.info(String.format("logs favorite for user '%s' with DTO '%s'", user, dto));
-        favoriteService.saveFavoriteRelation(user, dto);
-    }
-
-    @ApiOperation(value = "Log User favorite", nickname = "Log Favorite", produces = "application/json")
-    @RequestMapping(value = "/log/activity/favorite/test", method = RequestMethod.POST)
-    public void logUserFavorite(@RequestParam(value = "dto", defaultValue = "6968823") String id,
-                            @RequestParam(value = "user", defaultValue = "1001") Long user,
-                                @RequestParam(value = "favorite", defaultValue = "true") boolean favorite) {
-
-        FavoriteDTO dto = new FavoriteDTO();
-        dto.setId(id);
-        dto.setFavoriteToggled(favorite);
-
-        favoriteService.saveFavoriteRelation(user, dto);
-    }
-
 
     /*
         TEST METHOD
