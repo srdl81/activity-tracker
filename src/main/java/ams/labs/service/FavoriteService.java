@@ -41,7 +41,7 @@ public class FavoriteService {
     public void saveFavoriteRelation(Long userId, FavoriteDTO dto) {
         Favorite favoriteRelation = repository.findFavoriteFor(userId, dto.getId());
         if (favoriteRelation == null && !dto.isFavoriteToggled()) {
-            throw new ModelNotFoundException("Relation does not exist, nothing to delete");
+            throw new ModelNotFoundException(String.format("Relation or Node does not exist, nothing to delete. id=%s, toggled=%s", dto.getId(), dto.isFavoriteToggled()));
         }
 
         if (dto.isFavoriteToggled()) {
