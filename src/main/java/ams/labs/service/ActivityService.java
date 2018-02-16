@@ -17,7 +17,7 @@ public class ActivityService {
     private final static Logger log = LoggerFactory.getLogger(ActivityService.class);
 
     @Autowired
-    private LocationService locationService;
+    private PlatsService locationService;
 
     @Autowired
     private ProfessionService professionService;
@@ -37,7 +37,7 @@ public class ActivityService {
     public Annons logActivity(AnnonsDTO annonsDTO, Long userId) {
 
         Yrke yrke =  professionService.fetchProfession(annonsDTO.getYrkesroll());
-        Plats plats = locationService.fetchLocation(annonsDTO.getErbjudenArbetsplats());
+        Plats plats = locationService.fetchPlats(annonsDTO.getErbjudenArbetsplats());
 
         Annons job = annonsService.fetchOrSaveJobAdvertisement(annonsDTO, yrke, plats);
 
