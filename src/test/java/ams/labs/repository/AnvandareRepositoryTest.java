@@ -1,9 +1,9 @@
 package ams.labs.repository;
 
 import ams.labs.configuration.Neo4jTestConfiguration;
-import ams.labs.entity.JobAdvertisement;
-import ams.labs.entity.Watched;
-import ams.labs.entity.User;
+import ams.labs.entity.Annons;
+import ams.labs.entity.Tittat;
+import ams.labs.entity.Anvandare;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +19,26 @@ import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class UserRepositoryTest {
+public class AnvandareRepositoryTest {
 
     private static final String JOB_ADVERTISEMENT_ID = "6968822";
     @Autowired
-    private UserRepository repository;
+    private AnvardarRepository repository;
 
     @Autowired
-    private WatchedRepository watchedRepository;
+    private TittatRepository tittatRepository;
 
     private static final Long USER_ID = new Long(10000001);
 
     @Test
     public void findByUserId() throws Exception {
         //Given:
-        User user = new User();
-        user.setUserId(USER_ID);
-        repository.save(user);
+        Anvandare anvandare = new Anvandare();
+        anvandare.setUserId(USER_ID);
+        repository.save(anvandare);
 
         //When:
-        User result = repository.findByUserId(USER_ID);
+        Anvandare result = repository.findByUserId(USER_ID);
 
         //Then:
         assertThat(result).isNotNull();
@@ -50,36 +50,36 @@ public class UserRepositoryTest {
     public void userWatched() {
 
         //Given:
-        User user = new User();
-        user.setUserId(USER_ID);
+        Anvandare anvandare = new Anvandare();
+        anvandare.setUserId(USER_ID);
 
-        JobAdvertisement jobAdvertisement = new JobAdvertisement();
-        jobAdvertisement.setJobAdvertisementId(JOB_ADVERTISEMENT_ID);
+        Annons annons = new Annons();
+        annons.setAnnonsId(JOB_ADVERTISEMENT_ID);
 
-        Watched watched = new Watched(user, jobAdvertisement, getCurrentDate());
-        watchedRepository.save(watched);
+        Tittat tittat = new Tittat(anvandare, annons, getCurrentDate());
+        tittatRepository.save(tittat);
 
         //When:
-        User result = repository.findByUserId(USER_ID);
+        Anvandare result = repository.findByUserId(USER_ID);
 
         //Then:
         assertThat(result).isNotNull();
         assertThat(result.getUserId()).isEqualTo(USER_ID);
-        assertThat(result.getWatched().get(0).getJobAdvertisement().getJobAdvertisementId()).isEqualTo(JOB_ADVERTISEMENT_ID);
+        assertThat(result.getTittat().get(0).getAnnons().getAnnonsId()).isEqualTo(JOB_ADVERTISEMENT_ID);
     }
 
     @Test
     public void cafeShouldNeverServeCoffeeItDoesntHave() {
        //Given:
-        User user = new User();
-        user.setUserId(USER_ID);
+        Anvandare anvandare = new Anvandare();
+        anvandare.setUserId(USER_ID);
 
-        JobAdvertisement job = new JobAdvertisement();
-        job.setJobAdvertisementId(JOB_ADVERTISEMENT_ID);
+        Annons job = new Annons();
+        job.setAnnonsId(JOB_ADVERTISEMENT_ID);
 
-        repository.save(user);
+        repository.save(anvandare);
 
-        watchedRepository.save(new Watched(user, job, getCurrentDate()));
+        tittatRepository.save(new Tittat(anvandare, job, getCurrentDate()));
 
     }
 

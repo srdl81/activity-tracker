@@ -10,18 +10,18 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 @JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity
-public class User {
+public class Anvandare {
 
     @GraphId Long id;
     private Long userId;
 
     @Relationship(type = "WATCHED_AT", direction = Relationship.OUTGOING)
-    private List<Watched> watched = new ArrayList<>();
+    private List<Tittat> tittat = new ArrayList<>();
 
     @Relationship(type = "FAVORITE_MARKED", direction = Relationship.OUTGOING)
-    private List<Favorite> favorites = new ArrayList<>();
+    private List<Favorit> favorits = new ArrayList<>();
 
-    public User() { }
+    public Anvandare() { }
 
     public Long getUserId() {
         return userId;
@@ -31,19 +31,19 @@ public class User {
         this.userId = userId;
     }
 
-    public List<Watched> getWatched() {
-        return watched;
+    public List<Tittat> getTittat() {
+        return tittat;
     }
 
-    public void setWatched(List<Watched> watched) {
-        this.watched = watched;
+    public void setTittat(List<Tittat> tittat) {
+        this.tittat = tittat;
     }
 
-    public List<Favorite> getFavorites() {
-        return favorites;
+    public List<Favorit> getFavorits() {
+        return favorits;
     }
 
-    public void setFavorites(List<Favorite> favorites) {
-        this.favorites = favorites;
+    public void setFavorits(List<Favorit> favorits) {
+        this.favorits = favorits;
     }
 }

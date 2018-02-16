@@ -1,21 +1,21 @@
 package ams.labs.dto;
 
 
-public class ErbjudenArbetsplats {
+public class ErbjudenArbetsplatsDTO {
 
-    MatchProperty kommun;
+    PropertyDTO kommun;
 
-    public MatchProperty getKommun() {
+    public PropertyDTO getKommun() {
         return kommun;
     }
 
-    public void setKommun(MatchProperty kommun) {
+    public void setKommun(PropertyDTO kommun) {
         this.kommun = kommun;
     }
 
     @Override
     public String toString() {
-        return "ErbjudenArbetsplats{" +
+        return "ErbjudenArbetsplatsDTO{" +
                 "kommun=" + kommun +
                 '}';
     }

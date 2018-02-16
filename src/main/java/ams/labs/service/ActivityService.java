@@ -1,7 +1,7 @@
 package ams.labs.service;
 
 
-import ams.labs.dto.MatchResultDTO;
+import ams.labs.dto.AnnonsDTO;
 import ams.labs.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,40 +26,40 @@ public class ActivityService {
     private UserService userService;
 
     @Autowired
-    private JobAdvertisementService jobAdvertisementService;
+    private AnnonsService annonsService;
 
     @Autowired
-    private EmployerService employerService;
+    private ArbetsgivarService arbetsgivarService;
 
     @Autowired
     private WatchedService watchedService;
 
-    public JobAdvertisement logActivity(MatchResultDTO matchDTO, Long userId) {
+    public Annons logActivity(AnnonsDTO annonsDTO, Long userId) {
 
-        Profession profession =  professionService.fetchProfession(matchDTO.getYrkesroll());
-        Location location = locationService.fetchLocation(matchDTO.getErbjudenArbetsplats());
+        Yrke yrke =  professionService.fetchProfession(annonsDTO.getYrkesroll());
+        Plats plats = locationService.fetchLocation(annonsDTO.getErbjudenArbetsplats());
 
-        JobAdvertisement job = jobAdvertisementService.fetchOrSaveJobAdvertisement(matchDTO, profession, location);
+        Annons job = annonsService.fetchOrSaveJobAdvertisement(annonsDTO, yrke, plats);
 
-        User user = userService.fetchUser(userId);
-        if (user.getWatched() == null || user.getWatched().isEmpty() || hasNotWatched(user, job)) {
-            watchedService.save(new Watched(user, job, getCurrentDate()));
+        Anvandare anvandare = userService.fetchUser(userId);
+        if (anvandare.getTittat() == null || anvandare.getTittat().isEmpty() || hasNotWatched(anvandare, job)) {
+            watchedService.save(new Tittat(anvandare, job, getCurrentDate()));
         } else {
-            log.info(String.format("Will not log this activity ('%s', '%s') because it has already been booked.", user.getUserId(), job.getJobAdvertisementId()));
+            log.info(String.format("Will not log this activity ('%s', '%s') because it has already been booked.", anvandare.getUserId(), job.getAnnonsId()));
             return null;
         }
 
-        Employer employer = employerService.fetchEmployer(matchDTO);
-        employer.advertise(job);
-        employerService.save(employer);
+        Arbetsgivare arbetsgivare = arbetsgivarService.fetchEmployer(annonsDTO);
+        arbetsgivare.advertise(job);
+        arbetsgivarService.save(arbetsgivare);
 
         return job;
     }
 
-    private boolean hasNotWatched(User user, JobAdvertisement job) {
-        return user.getWatched().stream()
-                .anyMatch(watched -> !watched.getJobAdvertisement().getJobAdvertisementId()
-                        .equalsIgnoreCase(job.getJobAdvertisementId()));
+    private boolean hasNotWatched(Anvandare anvandare, Annons job) {
+        return anvandare.getTittat().stream()
+                .anyMatch(watched -> !watched.getAnnons().getAnnonsId()
+                        .equalsIgnoreCase(job.getAnnonsId()));
     }
 
 }

@@ -3,13 +3,12 @@ package ams.labs.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class MatchResultDTO {
+public class AnnonsDTO {
 
     @NotNull
     @Size(min=6, max=15)
     private String id;
 
-    @NotNull
     @Size(min=6, max=12)
     private String arbetsgivareId;
 
@@ -22,10 +21,10 @@ public class MatchResultDTO {
     private String arbetsgivarenamn;
 
     @NotNull
-    private MatchProperty yrkesroll;
+    private PropertyDTO yrkesroll;
 
     @NotNull
-    private ErbjudenArbetsplats erbjudenArbetsplats;
+    private ErbjudenArbetsplatsDTO erbjudenArbetsplats;
 
     public String getId() {
         return id;
@@ -59,25 +58,25 @@ public class MatchResultDTO {
         this.arbetsgivarenamn = arbetsgivarenamn;
     }
 
-    public MatchProperty getYrkesroll() {
+    public PropertyDTO getYrkesroll() {
         return yrkesroll;
     }
 
-    public void setYrkesroll(MatchProperty yrkesroll) {
+    public void setYrkesroll(PropertyDTO yrkesroll) {
         this.yrkesroll = yrkesroll;
     }
 
-    public ErbjudenArbetsplats getErbjudenArbetsplats() {
+    public ErbjudenArbetsplatsDTO getErbjudenArbetsplats() {
         return erbjudenArbetsplats;
     }
 
-    public void setErbjudenArbetsplats(ErbjudenArbetsplats erbjudenArbetsplats) {
+    public void setErbjudenArbetsplats(ErbjudenArbetsplatsDTO erbjudenArbetsplats) {
         this.erbjudenArbetsplats = erbjudenArbetsplats;
     }
 
     @Override
     public String toString() {
-        return "MatchResultDTO{" +
+        return "AnnonsDTO{" +
                 "id='" + id + '\'' +
                 ", arbetsgivareId='" + arbetsgivareId + '\'' +
                 ", organisationsnummer='" + organisationsnummer + '\'' +

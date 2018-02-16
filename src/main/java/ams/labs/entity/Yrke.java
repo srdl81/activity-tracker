@@ -8,18 +8,18 @@ import org.neo4j.ogm.annotation.NodeEntity;
 
 @JsonIdentityInfo(generator=JSOGGenerator.class)
 @NodeEntity
-public class Profession {
+public class Yrke {
 
     @GraphId Long id;
-    private String professionId;
+    private String yrkeId;
     private String name;
 
-    public String getProfessionId() {
-        return professionId;
+    public String getYrkeId() {
+        return yrkeId;
     }
 
-    public void setProfessionId(String professionId) {
-        this.professionId = professionId;
+    public void setYrkeId(String yrkeId) {
+        this.yrkeId = yrkeId;
     }
 
     public String getName() {

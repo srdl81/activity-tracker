@@ -3,9 +3,9 @@ package ams.labs.entity;
 import org.springframework.data.neo4j.annotation.QueryResult;
 
 @QueryResult
-public class JobAdsResult {
+public class AnnonsResult {
 
-    private String jobAdvertisementId;
+    private String annonsId;
     private Integer views;
 
     public Integer getViews() {
@@ -16,11 +16,11 @@ public class JobAdsResult {
         this.views = views;
     }
 
-    public String getJobAdvertisementId() {
-        return jobAdvertisementId;
+    public String getAnnonsId() {
+        return annonsId;
     }
 
-    public void setJobAdvertisementId(String jobAdvertisementId) {
-        this.jobAdvertisementId = jobAdvertisementId;
+    public void setAnnonsId(String annonsId) {
+        this.annonsId = annonsId;
     }
 }

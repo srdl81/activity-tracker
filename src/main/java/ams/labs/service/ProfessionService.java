@@ -1,9 +1,9 @@
 package ams.labs.service;
 
 
-import ams.labs.dto.MatchProperty;
-import ams.labs.entity.Profession;
-import ams.labs.repository.ProfessionRepository;
+import ams.labs.dto.PropertyDTO;
+import ams.labs.entity.Yrke;
+import ams.labs.repository.YrkeRepository;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,18 +20,18 @@ public class ProfessionService {
     private final static Logger log = LoggerFactory.getLogger(ProfessionService.class);
 
     @Autowired
-    private ProfessionRepository repository;
+    private YrkeRepository repository;
 
-    public Profession findByProfessionId(String professionId) {
-        return repository.findByProfessionId(professionId);
+    public Yrke findByProfessionId(String professionId) {
+        return repository.findByYrkeId(professionId);
     }
 
-    public void save(Profession profession) {
-        repository.save(profession);
+    public void save(Yrke yrke) {
+        repository.save(yrke);
     }
 
-    public List<Profession> findAll() {
-        Iterable<Profession> userIterable = repository.findAll();
+    public List<Yrke> findAll() {
+        Iterable<Yrke> userIterable = repository.findAll();
 
         return Lists.newArrayList(userIterable);
     }
@@ -40,17 +40,17 @@ public class ProfessionService {
         repository.deleteAll();
     }
 
-    public Profession fetchProfession(MatchProperty params) {
+    public Yrke fetchProfession(PropertyDTO params) {
         String professionId = params.getId();
-        Profession profession = repository.findByProfessionId(professionId);
-        if (profession == null) {
-            profession = new Profession();
-            profession.setProfessionId(professionId);
-            profession.setName(params.getNamn());
-            repository.save(profession);
+        Yrke yrke = repository.findByYrkeId(professionId);
+        if (yrke == null) {
+            yrke = new Yrke();
+            yrke.setYrkeId(professionId);
+            yrke.setName(params.getNamn());
+            repository.save(yrke);
         }
 
-        return profession;
+        return yrke;
     }
 
 }

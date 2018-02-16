@@ -1,6 +1,6 @@
 package ams.labs.dto;
 
-public class MatchProperty {
+public class PropertyDTO {
     private String id;
     private String namn;
 

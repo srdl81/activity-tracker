@@ -1,8 +1,8 @@
 package ams.labs.service;
 
 
-import ams.labs.entity.User;
-import ams.labs.repository.UserRepository;
+import ams.labs.entity.Anvandare;
+import ams.labs.repository.AnvardarRepository;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,34 +19,34 @@ public class UserService {
     final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private UserRepository repository;
+    private AnvardarRepository repository;
 
-    public void save(User user) {
-        repository.save(user);
+    public void save(Anvandare anvandare) {
+        repository.save(anvandare);
     }
 
     public void deleteAll() {
         repository.deleteAll();
     }
 
-    public User findByUserId(Long id) {
+    public Anvandare findByUserId(Long id) {
         return repository.findByUserId(id);
     }
 
-    public List<User> findAll() {
-        Iterable<User> userIterable = repository.findAll();
+    public List<Anvandare> findAll() {
+        Iterable<Anvandare> userIterable = repository.findAll();
 
         return Lists.newArrayList(userIterable);
     }
 
-    public User fetchUser(Long userId) {
-        User user = repository.findByUserId(userId);
-        if (user == null) {
-            user = new User();
-            user.setUserId(userId);
-            repository.save(user);
+    public Anvandare fetchUser(Long userId) {
+        Anvandare anvandare = repository.findByUserId(userId);
+        if (anvandare == null) {
+            anvandare = new Anvandare();
+            anvandare.setUserId(userId);
+            repository.save(anvandare);
         }
 
-        return user;
+        return anvandare;
     }
 }

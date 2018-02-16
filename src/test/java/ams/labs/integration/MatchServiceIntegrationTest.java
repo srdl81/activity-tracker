@@ -1,7 +1,7 @@
 package ams.labs.integration;
 
 import ams.labs.controller.LogActivityController;
-import ams.labs.dto.MatchResultDTO;
+import ams.labs.dto.AnnonsDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,36 +14,35 @@ import org.springframework.util.MultiValueMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.IOException;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MatchServiceIntegrationTest {
 
     private static final String ARBETSGIVAR_ID = "20315022";
-    private static final String ARBETSGIVAR_NAMN = "Magna AB";
-    private static final String ORGANISATIONS_NUMMER = "5565636247";
-    private static final String YRKES_ID = "2603";
-    private static final String YRKES_NAMN = "Innesäljare";
-    private static final String KOMMUN_ID = "0180";
-    private static final String KOMMUN_NAMN = "Stockholm";
+    private static final String ARBETSGIVAR_NAMN = "Svea Vaccin AB";
+    private static final String ORGANISATIONS_NUMMER = "5564548849";
+    private static final String YRKES_ID = "7296";
+    private static final String YRKES_NAMN = "Sjuksköterska, grundutbildad";
+    private static final String KOMMUN_ID = "1280";
+    private static final String KOMMUN_NAMN = "Malmö";
 
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void checkMatchServiceData() throws IOException {
+    public void checkMatchServiceData() {
         //Given:
-        String id = "6968822";
+        String id = "22038213";
+        String url = LogActivityController.URL + id;
 
        //When:
-        ResponseEntity<MatchResultDTO> responseEntity = restTemplate.postForEntity(LogActivityController.URL + id, getMultiValueMapHttpEntity(), MatchResultDTO.class);
+        ResponseEntity<AnnonsDTO> responseEntity = restTemplate.postForEntity(url, getMultiValueMapHttpEntity(), AnnonsDTO.class);
 
        //Then:
         assertThat(responseEntity.getStatusCode())
                 .isEqualTo(HttpStatus.OK);
 
-        MatchResultDTO body = responseEntity.getBody();
+        AnnonsDTO body = responseEntity.getBody();
 
         assertThat(body)
                 .isNotNull();
@@ -53,8 +52,7 @@ public class MatchServiceIntegrationTest {
                 .isEqualTo(id);
 
         assertThat(body.getArbetsgivareId())
-                .isNotNull()
-                .isEqualTo(ARBETSGIVAR_ID);
+                .isEqualTo(null);
 
         assertThat(body.getOrganisationsnummer())
                 .isNotNull()

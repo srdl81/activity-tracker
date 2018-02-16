@@ -1,7 +1,7 @@
 package ams.labs.repository;
 
 import ams.labs.configuration.Neo4jTestConfiguration;
-import ams.labs.entity.Profession;
+import ams.labs.entity.Yrke;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +14,27 @@ import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class ProfessionRepositoryTest {
+public class YrkeRepositoryTest {
 
     private static final String SYSTEMUTVECKLARE = "Systemutvecklare";
     private static final String PROFESSION_ID = "2255";
     @Autowired
-    private ProfessionRepository repository;
+    private YrkeRepository repository;
 
     @Test
     public void findByProfessionId() throws Exception {
         //Given:
-        Profession profession = new Profession();
-        profession.setName(SYSTEMUTVECKLARE);
-        profession.setProfessionId(PROFESSION_ID);
-        repository.save(profession);
+        Yrke yrke = new Yrke();
+        yrke.setName(SYSTEMUTVECKLARE);
+        yrke.setYrkeId(PROFESSION_ID);
+        repository.save(yrke);
 
         //When:
-        Profession result = repository.findByProfessionId(PROFESSION_ID);
+        Yrke result = repository.findByYrkeId(PROFESSION_ID);
 
         //Then:
         assertThat(result).isNotNull();
-        assertThat(result.getProfessionId()).isEqualTo(PROFESSION_ID);
+        assertThat(result.getYrkeId()).isEqualTo(PROFESSION_ID);
         assertThat(result.getName()).isEqualTo(SYSTEMUTVECKLARE);
     }
 

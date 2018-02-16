@@ -4,10 +4,10 @@ import ams.labs.configuration.Neo4jTestConfiguration;
 import ams.labs.dto.FavoriteDTO;
 import ams.labs.entity.*;
 import ams.labs.exception.ModelNotFoundException;
-import ams.labs.repository.FavoriteRepository;
-import ams.labs.repository.JobAdvertisementRepository;
-import ams.labs.repository.UserRepository;
+import ams.labs.repository.AnnonsRepository;
+import ams.labs.repository.AnvardarRepository;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Neo4jTestConfiguration.class)
 @ActiveProfiles(profiles = "test")
-public class FavoriteServiceTest {
+@Ignore
+public class FavoritServiceTest {
 
     private static final Long USER_ID = new Long(111111001);
 
@@ -28,26 +29,26 @@ public class FavoriteServiceTest {
     private FavoriteService service;
 
     @Autowired
-    private UserRepository userRepository;
+    private AnvardarRepository anvardarRepository;
 
     @Autowired
-    private JobAdvertisementRepository jobAdvertisementRepository;
+    private AnnonsRepository annonsRepository;
 
     @Before
     public void setUp() throws Exception {
-        Location location = new Location();
-        location.setName("Stockholm");
-        location.setLocationId("0180");
+        Plats plats = new Plats();
+        plats.setNamn("Stockholm");
+        plats.setPlatsId("0180");
 
-        Profession profession = new Profession();
-        profession.setProfessionId("7296");
-        profession.setName("Sjuksköterska, grundutbildad");
+        Yrke yrke = new Yrke();
+        yrke.setYrkeId("7296");
+        yrke.setName("Sjuksköterska, grundutbildad");
 
-        JobAdvertisement jobAdvertisement = new JobAdvertisement();
-        jobAdvertisement.setJobAdvertisementId("6968823");
-        jobAdvertisement.setLocation(location);
-        jobAdvertisement.setProfession(profession);
-        jobAdvertisementRepository.save(jobAdvertisement);
+        Annons annons = new Annons();
+        annons.setAnnonsId("6968823");
+        annons.setPlats(plats);
+        annons.setYrke(yrke);
+        annonsRepository.save(annons);
 
     }
 
@@ -58,12 +59,12 @@ public class FavoriteServiceTest {
 
         //When:
         service.saveFavoriteRelation(USER_ID, new FavoriteDTO("6968823", false));
-        User user = userRepository.findByUserId(USER_ID);
+        Anvandare anvandare = anvardarRepository.findByUserId(USER_ID);
 
         //Then:
-        assertThat(user).isNotNull();
-        assertThat(user.getFavorites()).isEmpty();
-        assertThat(user.getFavorites().size()).isEqualTo(0);
+        assertThat(anvandare).isNotNull();
+        assertThat(anvandare.getFavorits()).isEmpty();
+        assertThat(anvandare.getFavorits().size()).isEqualTo(0);
     }
 
     @Test
@@ -75,16 +76,16 @@ public class FavoriteServiceTest {
 
         //When:
         service.saveFavoriteRelation(USER_ID, dto);
-        User user = userRepository.findByUserId(USER_ID);
+        Anvandare anvandare = anvardarRepository.findByUserId(USER_ID);
 
         //Then:
-        assertThat(user).isNotNull();
+        assertThat(anvandare).isNotNull();
 
-        assertThat(user.getFavorites())
+        assertThat(anvandare.getFavorits())
                 .isNotNull()
                 .isNotEmpty();
 
-        assertThat(user.getFavorites().size()).isEqualTo(1);
+        assertThat(anvandare.getFavorits().size()).isEqualTo(1);
     }
 
 

@@ -1,9 +1,9 @@
 package ams.labs.service;
 
 import ams.labs.dto.FavoriteDTO;
-import ams.labs.entity.Favorite;
-import ams.labs.entity.JobAdvertisement;
-import ams.labs.entity.User;
+import ams.labs.entity.Favorit;
+import ams.labs.entity.Annons;
+import ams.labs.entity.Anvandare;
 import ams.labs.exception.ModelNotFoundException;
 import ams.labs.repository.FavoriteRepository;
 import com.google.common.collect.Lists;
@@ -21,16 +21,16 @@ public class FavoriteService {
     private UserService userService;
 
     @Autowired
-    private JobAdvertisementService jobAdvertisementService;
+    private AnnonsService annonsService;
 
     @Autowired
     private FavoriteRepository repository;
 
-    public void save(Favorite favorite) {
-        repository.save(favorite);
+    public void save(Favorit favorit) {
+        repository.save(favorit);
     }
 
-    public List<Favorite> findAll() {
+    public List<Favorit> findAll() {
         return Lists.newArrayList(repository.findAll());
     }
 
@@ -39,15 +39,15 @@ public class FavoriteService {
     }
 
     public void saveFavoriteRelation(Long userId, FavoriteDTO dto) {
-        Favorite favoriteRelation = repository.findFavoriteFor(userId, dto.getId());
-        if (favoriteRelation == null && !dto.isFavoriteToggled()) {
+        Favorit favoritRelation = repository.findFavoriteFor(userId, dto.getId());
+        if (favoritRelation == null && !dto.isFavoriteToggled()) {
             throw new ModelNotFoundException(String.format("Relation or Node does not exist, nothing to delete. id=%s, toggled=%s", dto.getId(), dto.isFavoriteToggled()));
         }
 
         if (dto.isFavoriteToggled()) {
-            repository.save(getOrCreateFavoriteRelation(userId, dto, favoriteRelation));
+            repository.save(getOrCreateFavoriteRelation(userId, dto, favoritRelation));
         } else {
-            repository.delete(favoriteRelation);
+            repository.delete(favoritRelation);
         }
     }
 
@@ -55,18 +55,18 @@ public class FavoriteService {
      * If Relation does not exist, create it.
      * @param userId
      * @param dto
-     * @param favoriteRelation
+     * @param favoritRelation
      * @return
      */
-    private Favorite getOrCreateFavoriteRelation(Long userId, FavoriteDTO dto, Favorite favoriteRelation) {
-        return favoriteRelation == null ? createNewFavorite(userId, dto) : favoriteRelation;
+    private Favorit getOrCreateFavoriteRelation(Long userId, FavoriteDTO dto, Favorit favoritRelation) {
+        return favoritRelation == null ? createNewFavorite(userId, dto) : favoritRelation;
 
     }
 
-    private Favorite createNewFavorite(Long userId, FavoriteDTO dto) {
-        User user = userService.fetchUser(userId);
-        JobAdvertisement job = jobAdvertisementService.fetchJobAdvertisement(dto.getId());
-        return new Favorite(user, job);
+    private Favorit createNewFavorite(Long userId, FavoriteDTO dto) {
+        Anvandare anvandare = userService.fetchUser(userId);
+        Annons job = annonsService.fetchJobAdvertisement(dto.getId());
+        return new Favorit(anvandare, job);
     }
 
 

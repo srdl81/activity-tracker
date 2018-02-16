@@ -3,7 +3,7 @@ buildscript {
 		springBootVersion = '1.4.2.RELEASE'
         swaggerVersion = '2.6.0'
         springDataNeo4JVersion = '4.1.6.RELEASE'
-        neo4jVersion = '3.0.7'
+        neo4jVersion = '3.3.0'
         dockerVersion = '1.2'
         jacocoVersion = '0.7.5.201505241946'
 	}

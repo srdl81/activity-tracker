@@ -14,9 +14,9 @@ import javax.validation.Valid;
 
 @Api(value = "Favorite Entity", description = "Toggle favorite")
 @RestController
-public class FavoriteController {
+public class FavoritController {
 
-    private final static Logger log = LoggerFactory.getLogger(FavoriteController.class);
+    private final static Logger log = LoggerFactory.getLogger(FavoritController.class);
 
     @Autowired
     private FavoriteService favoriteService;
@@ -24,10 +24,10 @@ public class FavoriteController {
     @ApiOperation(value = "Log User favorite", nickname = "Log Favorite", produces = "application/json")
     @RequestMapping(value = "/log/activity/favorite", method = RequestMethod.POST)
     public void logFavorite(@Valid @RequestBody FavoriteDTO dto,
-                            @RequestParam(value = "user", defaultValue = "1001") Long user) {
+                            @RequestParam(value = "anvandare", defaultValue = "1001") Long anvandare) {
 
-        log.info(String.format("logs favorite for user '%s' with DTO '%s'", user, dto));
-        favoriteService.saveFavoriteRelation(user, dto);
+        log.info(String.format("logs favorite for anvandare '%s' with DTO '%s'", anvandare, dto));
+        favoriteService.saveFavoriteRelation(anvandare, dto);
     }
 
     @ApiOperation(value = "Log User favorite", nickname = "Log Favorite", produces = "application/json")
