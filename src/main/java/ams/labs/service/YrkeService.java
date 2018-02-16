@@ -15,15 +15,15 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ProfessionService {
+public class YrkeService {
 
-    private final static Logger log = LoggerFactory.getLogger(ProfessionService.class);
+    private final static Logger log = LoggerFactory.getLogger(YrkeService.class);
 
     @Autowired
     private YrkeRepository repository;
 
-    public Yrke findByProfessionId(String professionId) {
-        return repository.findByYrkeId(professionId);
+    public Yrke findByYrkeId(String yrkeId) {
+        return repository.findByYrkeId(yrkeId);
     }
 
     public void save(Yrke yrke) {
@@ -40,13 +40,13 @@ public class ProfessionService {
         repository.deleteAll();
     }
 
-    public Yrke fetchProfession(PropertyDTO params) {
-        String professionId = params.getId();
-        Yrke yrke = repository.findByYrkeId(professionId);
+    public Yrke fetchYrke(PropertyDTO propertyDTO) {
+        String yrkeId = propertyDTO.getId();
+        Yrke yrke = repository.findByYrkeId(yrkeId);
         if (yrke == null) {
             yrke = new Yrke();
-            yrke.setYrkeId(professionId);
-            yrke.setName(params.getNamn());
+            yrke.setYrkeId(yrkeId);
+            yrke.setName(propertyDTO.getNamn());
             repository.save(yrke);
         }
 

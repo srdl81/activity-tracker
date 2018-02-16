@@ -20,7 +20,7 @@ public class ActivityService {
     private PlatsService locationService;
 
     @Autowired
-    private ProfessionService professionService;
+    private YrkeService yrkeService;
 
     @Autowired
     private UserService userService;
@@ -36,7 +36,7 @@ public class ActivityService {
 
     public Annons logActivity(AnnonsDTO annonsDTO, Long userId) {
 
-        Yrke yrke =  professionService.fetchProfession(annonsDTO.getYrkesroll());
+        Yrke yrke =  yrkeService.fetchYrke(annonsDTO.getYrkesroll());
         Plats plats = locationService.fetchPlats(annonsDTO.getErbjudenArbetsplats());
 
         Annons job = annonsService.fetchOrSaveJobAdvertisement(annonsDTO, yrke, plats);
