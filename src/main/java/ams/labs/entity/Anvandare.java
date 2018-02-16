@@ -13,7 +13,7 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 public class Anvandare {
 
     @GraphId Long id;
-    private Long userId;
+    private Long anvandarId;
 
     @Relationship(type = "WATCHED_AT", direction = Relationship.OUTGOING)
     private List<Tittat> tittat = new ArrayList<>();
@@ -23,12 +23,12 @@ public class Anvandare {
 
     public Anvandare() { }
 
-    public Long getUserId() {
-        return userId;
+    public Long getAnvandarId() {
+        return anvandarId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setAnvandarId(Long anvandarId) {
+        this.anvandarId = anvandarId;
     }
 
     public List<Tittat> getTittat() {

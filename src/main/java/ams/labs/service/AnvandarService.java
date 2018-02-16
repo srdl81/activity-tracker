@@ -14,9 +14,9 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserService {
+public class AnvandarService {
 
-    final Logger logger = LoggerFactory.getLogger(UserService.class);
+    final Logger logger = LoggerFactory.getLogger(AnvandarService.class);
 
     @Autowired
     private AnvardarRepository repository;
@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public Anvandare findByUserId(Long id) {
-        return repository.findByUserId(id);
+        return repository.findByAnvandarId(id);
     }
 
     public List<Anvandare> findAll() {
@@ -39,11 +39,11 @@ public class UserService {
         return Lists.newArrayList(userIterable);
     }
 
-    public Anvandare fetchUser(Long userId) {
-        Anvandare anvandare = repository.findByUserId(userId);
+    public Anvandare fetchUser(Long anvandarId) {
+        Anvandare anvandare = repository.findByAnvandarId(anvandarId);
         if (anvandare == null) {
             anvandare = new Anvandare();
-            anvandare.setUserId(userId);
+            anvandare.setAnvandarId(anvandarId);
             repository.save(anvandare);
         }
 

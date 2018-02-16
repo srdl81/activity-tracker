@@ -59,7 +59,7 @@ public class FavoritServiceTest {
 
         //When:
         service.saveFavoriteRelation(USER_ID, new FavoriteDTO("6968823", false));
-        Anvandare anvandare = anvardarRepository.findByUserId(USER_ID);
+        Anvandare anvandare = anvardarRepository.findByAnvandarId(USER_ID);
 
         //Then:
         assertThat(anvandare).isNotNull();
@@ -76,7 +76,7 @@ public class FavoritServiceTest {
 
         //When:
         service.saveFavoriteRelation(USER_ID, dto);
-        Anvandare anvandare = anvardarRepository.findByUserId(USER_ID);
+        Anvandare anvandare = anvardarRepository.findByAnvandarId(USER_ID);
 
         //Then:
         assertThat(anvandare).isNotNull();

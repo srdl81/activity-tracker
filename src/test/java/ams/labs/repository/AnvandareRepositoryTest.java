@@ -34,15 +34,15 @@ public class AnvandareRepositoryTest {
     public void findByUserId() throws Exception {
         //Given:
         Anvandare anvandare = new Anvandare();
-        anvandare.setUserId(USER_ID);
+        anvandare.setAnvandarId(USER_ID);
         repository.save(anvandare);
 
         //When:
-        Anvandare result = repository.findByUserId(USER_ID);
+        Anvandare result = repository.findByAnvandarId(USER_ID);
 
         //Then:
         assertThat(result).isNotNull();
-        assertThat(result.getUserId()).isEqualTo(USER_ID);
+        assertThat(result.getAnvandarId()).isEqualTo(USER_ID);
     }
 
 
@@ -51,7 +51,7 @@ public class AnvandareRepositoryTest {
 
         //Given:
         Anvandare anvandare = new Anvandare();
-        anvandare.setUserId(USER_ID);
+        anvandare.setAnvandarId(USER_ID);
 
         Annons annons = new Annons();
         annons.setAnnonsId(JOB_ADVERTISEMENT_ID);
@@ -60,11 +60,11 @@ public class AnvandareRepositoryTest {
         tittatRepository.save(tittat);
 
         //When:
-        Anvandare result = repository.findByUserId(USER_ID);
+        Anvandare result = repository.findByAnvandarId(USER_ID);
 
         //Then:
         assertThat(result).isNotNull();
-        assertThat(result.getUserId()).isEqualTo(USER_ID);
+        assertThat(result.getAnvandarId()).isEqualTo(USER_ID);
         assertThat(result.getTittat().get(0).getAnnons().getAnnonsId()).isEqualTo(JOB_ADVERTISEMENT_ID);
     }
 
@@ -72,7 +72,7 @@ public class AnvandareRepositoryTest {
     public void cafeShouldNeverServeCoffeeItDoesntHave() {
        //Given:
         Anvandare anvandare = new Anvandare();
-        anvandare.setUserId(USER_ID);
+        anvandare.setAnvandarId(USER_ID);
 
         Annons job = new Annons();
         job.setAnnonsId(JOB_ADVERTISEMENT_ID);

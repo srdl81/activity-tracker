@@ -59,7 +59,7 @@ public class ActivityServiceTest {
     public void logActivity() {
         service.logActivity(annonsDTO, USER_ID);
 
-        Anvandare anvandare = anvardarRepository.findByUserId(USER_ID);
+        Anvandare anvandare = anvardarRepository.findByAnvandarId(USER_ID);
 
         assertThat(anvandare).isNotNull();
 
@@ -75,7 +75,7 @@ public class ActivityServiceTest {
         service.logActivity(annonsDTO, USER_ID);
         service.logActivity(annonsDTO, USER_ID);
 
-        Anvandare anvandare = anvardarRepository.findByUserId(USER_ID);
+        Anvandare anvandare = anvardarRepository.findByAnvandarId(USER_ID);
 
         assertThat(anvandare).isNotNull();
 

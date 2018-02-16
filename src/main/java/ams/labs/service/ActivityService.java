@@ -23,7 +23,7 @@ public class ActivityService {
     private YrkeService yrkeService;
 
     @Autowired
-    private UserService userService;
+    private AnvandarService anvandarService;
 
     @Autowired
     private AnnonsService annonsService;
@@ -41,11 +41,11 @@ public class ActivityService {
 
         Annons job = annonsService.fetchOrSaveJobAdvertisement(annonsDTO, yrke, plats);
 
-        Anvandare anvandare = userService.fetchUser(userId);
+        Anvandare anvandare = anvandarService.fetchUser(userId);
         if (anvandare.getTittat() == null || anvandare.getTittat().isEmpty() || hasNotWatched(anvandare, job)) {
             watchedService.save(new Tittat(anvandare, job, getCurrentDate()));
         } else {
-            log.info(String.format("Will not log this activity ('%s', '%s') because it has already been booked.", anvandare.getUserId(), job.getAnnonsId()));
+            log.info(String.format("Will not log this activity ('%s', '%s') because it has already been booked.", anvandare.getAnvandarId(), job.getAnnonsId()));
             return null;
         }
 

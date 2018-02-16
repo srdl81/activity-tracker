@@ -18,7 +18,7 @@ import java.util.List;
 public class FavoriteService {
 
     @Autowired
-    private UserService userService;
+    private AnvandarService anvandarService;
 
     @Autowired
     private AnnonsService annonsService;
@@ -64,7 +64,7 @@ public class FavoriteService {
     }
 
     private Favorit createNewFavorite(Long userId, FavoriteDTO dto) {
-        Anvandare anvandare = userService.fetchUser(userId);
+        Anvandare anvandare = anvandarService.fetchUser(userId);
         Annons job = annonsService.fetchJobAdvertisement(dto.getId());
         return new Favorit(anvandare, job);
     }
