@@ -33,10 +33,10 @@ public class LogActivityController {
     @ApiOperation(value = "Log User Activity", nickname = "Log Activity", produces = "application/json")
     @RequestMapping(value = "/log/activity", method = RequestMethod.POST)
     public Annons logUserActivity(@Valid @RequestBody AnnonsDTO annonsDTO,
-                                  @RequestParam(value = "user", defaultValue = "1001") Long user) {
+                                  @RequestParam(value = "anvandarId", defaultValue = "1001") Long anvandarId) {
 
-        log.info(String.format("logging activity for user '%s' with DTO '%s'", user, annonsDTO));
-        return logActivity(user, annonsDTO);
+        log.info(String.format("logging activity for anvandarId '%s' with DTO '%s'", anvandarId, annonsDTO));
+        return logActivity(anvandarId, annonsDTO);
     }
 
     /*
@@ -44,11 +44,11 @@ public class LogActivityController {
     */
     @ApiOperation(value = "TEST Generate activity FOR TEST", nickname = " TEST Log Activity", produces = "application/json")
     @RequestMapping(value = "/log/activity/generate", method = RequestMethod.POST)
-    public String logUserActivity(@RequestParam("userId") Long userId, @RequestParam("id") String id) {
+    public String logUserActivity(@RequestParam("anvandarId") Long anvandarId, @RequestParam("annonsId") String annonsId) {
 
-        ResponseEntity<AnnonsDTO> responseEntity = restTemplate.postForEntity(URL + id, getMultiValueMapHttpEntity(), AnnonsDTO.class);
+        ResponseEntity<AnnonsDTO> responseEntity = restTemplate.postForEntity(URL + annonsId, getMultiValueMapHttpEntity(), AnnonsDTO.class);
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            activityService.logActivity(responseEntity.getBody(), userId);
+            activityService.logActivity(responseEntity.getBody(), anvandarId);
         }
 
 
